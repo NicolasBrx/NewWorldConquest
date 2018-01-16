@@ -9,15 +9,26 @@ import tools.Coordinates;
 public class Unit {
   
   private String id;
-  private int power;
-  private int movement;
-  private String name;
   private int team;
-  private int level;
-  private Coordinates coord;
+  private Coordinates coordinates;
   
   public Unit(){
     
+  }
+  
+  public Unit(int team, Coordinates coord){
+    this.id = "";
+    this.team = team;
+    this.coordinates = coord;
+  }
+  
+  public void setTeam(int team){
+    this.team = team;
+  }
+  
+  public void setCoordinates(int x,int y){
+    this.coordinates.X = x;
+    this.coordinates.Y = y;
   }
   
 }
