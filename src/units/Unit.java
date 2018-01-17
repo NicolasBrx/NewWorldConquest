@@ -12,23 +12,38 @@ public class Unit {
   private int team;
   private Coordinates coordinates;
   
+  /**
+   * 
+   */
   public Unit(){
     
   }
   
+  /**
+   * 
+   * @param team
+   * @param coord 
+   */
   public Unit(int team, Coordinates coord){
     this.id = "";
     this.team = team;
-    this.coordinates = coord;
+    this.coordinates.receive(coord);
   }
   
+  /**
+   * 
+   * @param team 
+   */
   public void setTeam(int team){
     this.team = team;
   }
   
-  public void setCoordinates(int x,int y){
-    this.coordinates.X = x;
-    this.coordinates.Y = y;
+  /**
+   * 
+   * @param newCoordinates 
+   */
+  public void setCoordinates(Coordinates newCoordinates){
+    this.coordinates.receive(newCoordinates);
   }
   
 }

@@ -1,4 +1,4 @@
-package units.landunits;
+package units.groundunits;
 
 import units.Unit;
 

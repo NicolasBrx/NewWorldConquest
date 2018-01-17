@@ -1,17 +1,24 @@
 package units;
 
+import tools.Coordinates;
+
 /**
  *
- * @author nicolas
+ * @author Nicolas Brax
  */
 public interface UnitInterface {
   
   void setName(String newName);
   String getName();
+  String getType();
   
-  void setPower(int newPower);
-  int getPower();
+  int getAttackScore();
+  int getDefenseScore();
+  int getMovementScore();
+  int getVisionScore();
   
-  void setMovement(int newMovement);
-  int getMovement();
+  int damage(int attackerDV);
+  void updateCoordinates(Coordinates newCoord);
+  void levelUp();
+  
 }

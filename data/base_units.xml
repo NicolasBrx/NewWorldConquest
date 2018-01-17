@@ -1,0 +1,68 @@
+<base_units>
+  <units type="air">
+    <unit name="Combat Plane">
+      <power>10</power>
+      <defense>5</defense>
+      <movement>7</movement>
+      <vision>7</vision>
+    </unit>
+    <unit name="Scout Plane">
+      <power>2</power>
+      <defense>2</defense>
+      <movement>10</movement>
+      <vision>10</vision>
+    </unit>
+    <unit name="Transport Plane">
+      <power>2</power>
+      <defense>10</defense>
+      <movement>15</movement>
+      <vision>7</vision>
+    </unit>
+  </units>
+  <units type="ground">
+    <unit name="Ground Transport">
+      <power>2</power>
+      <defense>15</defense>
+      <movement>15</movement>
+      <vision>7</vision>
+    </unit>
+    <unit name="Infantry">
+      <power>5</power>
+      <defense>5</defense>
+      <movement>10</movement>
+      <vision>10</vision>
+    </unit>
+    <unit name="Tank">
+      <power>15</power>
+      <movement>15</movement>
+      <movement>5</movement>
+      <vision>5</vision>
+    </unit>
+  </units>
+  <units type="sea">
+    <unit name="Battleship">
+      <power>2</power>
+      <defense>15</defense>
+      <movement>15</movement>
+      <vision>7</vision>
+    </unit>
+    <unit name="Carrier">
+      <power>5</power>
+      <defense>5</defense>
+      <movement>10</movement>
+      <vision>10</vision>
+    </unit>
+    <unit name="Destroyer">
+      <power>15</power>
+      <movement>15</movement>
+      <movement>5</movement>
+      <vision>5</vision>
+    </unit>
+    <unit name="Submarine">
+      <power>15</power>
+      <movement>15</movement>
+      <movement>5</movement>
+      <vision>5</vision>
+    </unit>
+  </units>
+</base_units>

@@ -9,25 +9,28 @@ import units.Unit;
  */
 public class AirUnit extends Unit{
   
-  private final int MAX_FUEL = 10;
+  protected final String UNIT_TYPE = "air";
   
   private String baseCampId;
+  
+  private int maxFuel;
   private int currentFuel;
   
   public AirUnit(){
     super(0,new Coordinates(0,0));
     this.baseCampId = null;
+    this.maxFuel = 10;
     this.currentFuel = 0;
   }
   
   public AirUnit(int team, Coordinates coord, String camp){
     super(0,coord);
     this.baseCampId = camp;
-    this.currentFuel = this.MAX_FUEL;
+    this.currentFuel = this.maxFuel;
   }
 
   public void refuel(){
-    this.currentFuel = this.MAX_FUEL;
+    this.currentFuel = this.maxFuel;
   }
   
   public String getBaseCamp() {
@@ -45,7 +48,4 @@ public class AirUnit extends Unit{
   public void setFuelCapacity(int fuelCapacity) {
     this.currentFuel = fuelCapacity;
   }
-  
-  
-  
 }
