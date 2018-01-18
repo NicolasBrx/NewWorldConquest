@@ -100,6 +100,7 @@ public abstract class ModernUnit implements UnitInterface{
    * are then to be built by the method CreateUnit(unitName) called in the child 
    * constructor.
    * The unit is created with no experience.
+   * 
    * @param team the team number of the player creating the unit.
    * @param coord the coordinates where to build the team.
    */
@@ -114,7 +115,8 @@ public abstract class ModernUnit implements UnitInterface{
    * Update the unit according to its generic name and as set in data/base_unit.xml.
    * This method must not be overrided and only called into the child constructor.
    * It is a Constructor Extension, nothing more.
-   * @param genericName the name of the unit as it can be retrieve in the
+   * 
+   * @param genericName the name of the unit as it can be retrieved in the
    *                    base unit file.
    */
   protected void createUnit(String genericName){
@@ -163,6 +165,7 @@ public abstract class ModernUnit implements UnitInterface{
    * ---
    * If the unit is eliminated after the attack, the function gives -1 as a
    * result and it gives 1 otherwise.
+   * 
    * @param attackerDV the damage value scored by the opponent.
    * @return 1 if the unit resist the attack and -1 if the unit is eliminated.
    */
@@ -173,6 +176,7 @@ public abstract class ModernUnit implements UnitInterface{
   
   /**
    * Update the coordinates of the unit after a movement.
+   * 
    * @param newCoord the new coordinates.
    */
   @Override
