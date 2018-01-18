@@ -1,4 +1,4 @@
-package locations;
+package places;
 
 import tools.Coordinates;
 
@@ -6,6 +6,6 @@ import tools.Coordinates;
  *
  * @author Nicolas Brax
  */
-public class Location {
+public class Place implements PlaceInterface{
   private Coordinates coord;
 }

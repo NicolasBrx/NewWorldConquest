@@ -1,4 +1,4 @@
-package lands;
+package map.landType;
 
 /**
  *

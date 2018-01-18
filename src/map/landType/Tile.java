@@ -1,4 +1,4 @@
-package lands;
+package map.landType;
 
 import tools.Coordinates;
 
@@ -6,7 +6,7 @@ import tools.Coordinates;
  *
  * @author nicolas
  */
-public class Tile {
+public class Tile implements TileInterface {
   private final Coordinates tileCoord;
   
   public Tile(){

@@ -1,0 +1,38 @@
+<places>
+  <place name="Airport">
+    <unit_capacity></unit_capacity>
+    <bonuses>
+      <bonus skill=""></bonus>
+    </bonuses>
+    <maluses>
+      <malus skill=""></malus>
+    </maluses>
+  </place>
+  <place name="City">
+    <unit_capacity></unit_capacity>
+    <bonuses>
+      <bonus skill=""></bonus>
+    </bonuses>
+    <maluses>
+      <malus skill=""></malus>
+    </maluses>
+  </place>
+  <place name="Military Camp">
+    <unit_capacity></unit_capacity>
+    <bonuses>
+      <bonus skill=""></bonus>
+    </bonuses>
+    <maluses>
+      <malus skill=""></malus>
+    </maluses>
+  </place>
+  <place name="Oasis">
+    <unit_capacity></unit_capacity>
+    <bonuses>
+      <bonus skill=""></bonus>
+    </bonuses>
+    <maluses>
+      <malus skill=""></malus>
+    </maluses>
+  </place>
+</places>
