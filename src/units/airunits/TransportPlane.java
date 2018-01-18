@@ -1,14 +1,148 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package units.airunits;
 
+import tools.Coordinates;
+
 /**
- *
- * @author nicolas
+ * This class defines the specific method of a Transport Plane.
+ * It herits from AirUnit, an abstract class for every flying unit. It mainly
+ * overrides the methods used to compute and give the different scores used
+ * by the unit (attack, defense, vision and movement). It also specified the 
+ * benefits of the gain of a new level by the unit.
+ * 
+ * @author Nicolas Brax
  */
 public class TransportPlane extends AirUnit{
   
+  /****************************************************************************/
+  /** Constant Attributes                                                    **/
+  /****************************************************************************/
+  
+  /**
+   * The generic and constant name of the unit. This is also used to load the 
+   * several scores of the unit in the file data/base_unit.xml.
+   */
+  private final String GENERIC_NAME = "Transport Plane";
+  
+  
+  /****************************************************************************/
+  /** Private Attributes                                                     **/
+  /****************************************************************************/
+  
+  /**
+   * The name of the unit. This name can be modified by the user.
+   */
+  private String name;
+  
+  
+  /****************************************************************************/
+  /** Constructor Methods                                                    **/
+  /****************************************************************************/
+  
+  /**
+   * Deffault Constructor
+   * The Unit is built with the standart name and scores but negative experience
+   */
+  public TransportPlane(){
+    super(0,new Coordinates(0,0),null);
+    createUnit(this.GENERIC_NAME);
+    this.name = this.GENERIC_NAME;
+  }
+  
+  /**
+   * Build a new Transport Plane.
+   * @param team the player team to which the unit belong.
+   * @param nb   the number of units of the same type already created in this team.
+   * @param x    the X coordinate on which the unit is created.
+   * @param y    the Y coordinate on which the unit is created.
+   * @param camp the identificator of the base camp of the unit.
+   */
+  public TransportPlane(int team,int nb, int x, int y, String camp){
+    super(team,new Coordinates(x,y),camp);
+    createUnit(this.GENERIC_NAME);
+    this.name = this.GENERIC_NAME + " " + (nb < 10 ? "0" : "") + nb;
+  }
+  
+  
+  /****************************************************************************/
+  /** Overrided methods from UnitInterface implemented in parent <Unit>      **/
+  /****************************************************************************/
+  
+  /**
+   * Modify the name of the unit.
+   * @param newName The new name of the unit.
+   */
+  @Override
+  public void setName(String newName){
+    this.name = newName;
+  }
+  
+  /**
+   * Give the name of the unit.
+   * @return the name of the unit.
+   */
+  @Override
+  public String getName(){
+    return this.name;
+  }
+  
+  /**
+   * Give the attack score of the unit.
+   * As a Transport Plane, it is computed as follow:
+   * ---
+   * @return the attack score of the unit, a Combat Plane.
+   */
+  @Override
+  public int getAttackScore(){
+    return this.attack;
+  }
+  
+  /**
+   * Give the defense score of the unit.
+   * As a Transport Plane, it is computed as follow:
+   * ---
+   * @return the defense score of the unit, a Combat Plane.
+   */
+  @Override
+  public int getDefenseScore(){
+    return this.defense;
+  }
+  
+  /**
+   * Give the movement score of the unit.
+   * As a Transport Plane, it is computed as follow:
+   * ---
+   * @return the movement score of the unit, a Combat Plane.
+   */
+  @Override
+  public int getMovementScore(){
+    return this.movement;
+  }
+  
+  /**
+   * Give the vision score of the unit.
+   * As a Transport Plane, it is computed as follow:
+   * ---
+   * @return the vision score of the unit, a Combat Plane.
+   */
+  @Override
+  public int getVisionScore(){
+    return this.vision;
+  }
+  
+  /**
+   * The unit has acquired enough experience to level up and be stronger. As it
+   * is a Transport Plane, it consists in:
+   * - ---
+   * - ---
+   * - ---
+   */
+  @Override
+  public void levelUp(){
+    this.level = this.level + 1;
+    this.maxAttack = this.maxAttack + this.level;
+    this.maxDefense = this.maxDefense + this.level;
+    this.maxMovement = this.maxMovement + this.level;
+    this.maxVision = this.maxVision + this.level;
+    resetAll();
+  }
 }

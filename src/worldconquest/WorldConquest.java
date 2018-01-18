@@ -3,11 +3,10 @@ package worldconquest;
 import java.util.ArrayList;
 import map.Map;
 import player.Player;
-import units.airunits.CombatPlane;
 
 /**
  *
- * @author NicolasBrax
+ * @author Nicolas Brax
  */
 public class WorldConquest {
 
@@ -18,8 +17,6 @@ public class WorldConquest {
     createPlayers(2);
     createMap("world");
     decideStartingLocation();
-    
-    // run a fuckin" thread!
   }
   
   public static void createPlayers(int nbPlayers){

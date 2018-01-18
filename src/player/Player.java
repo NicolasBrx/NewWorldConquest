@@ -2,7 +2,7 @@ package player;
 
 import java.util.ArrayList;
 import locations.Location;
-import units.Unit;
+import units.ModernUnit;
 
 /**
  *
@@ -13,7 +13,7 @@ public class Player {
   private int playerId;
   private String pseudonyme;
   private int playerTeam;
-  private ArrayList<Unit> unitList;
+  private ArrayList<ModernUnit> unitList;
   private ArrayList<Location> locationList;
   
   public Player(){
@@ -32,7 +32,7 @@ public class Player {
     locationList = new ArrayList<>();
   }
   
-  public void addUnit(Unit unit){
+  public void addUnit(ModernUnit unit){
     
   }
   
@@ -46,7 +46,7 @@ public class Player {
     return this.playerTeam;
   }
   
-  public ArrayList<Unit> getUnits(){
+  public ArrayList<ModernUnit> getUnits(){
     return this.unitList;
   }
   public ArrayList<Location> getLocations(){
