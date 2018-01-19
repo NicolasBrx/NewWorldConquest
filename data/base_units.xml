@@ -1,68 +1,88 @@
 <base_units>
   <units type="air">
     <unit name="Combat Plane">
-      <attack>10</attack>
-      <defense>5</defense>
-      <movement>7</movement>
-      <vision>7</vision>
+      <attributes>
+        <attribute name="attack">1</attribute>
+        <attribute name="defense">2</attribute>
+        <attribute name="movement">3</attribute>
+        <attribute name="vision">4</attribute>
+      </attributes>
     </unit>
     <unit name="Scout Plane">
-      <attack>2</attack>
-      <defense>2</defense>
-      <movement>10</movement>
-      <vision>10</vision>
+      <attributes>
+        <attribute name="attack">2</attribute>
+        <attribute name="defense">2</attribute>
+        <attribute name="movement">10</attribute>
+        <attribute name="vision">10</attribute>
+      </attributes>
     </unit>
     <unit name="Transport Plane">
-      <attack>2</attack>
-      <defense>10</defense>
-      <movement>15</movement>
-      <vision>7</vision>
+      <attributes>
+        <attribute name="attack">2</attribute>
+        <attribute name="defense">2</attribute>
+        <attribute name="movement">10</attribute>
+        <attribute name="vision">10</attribute>
+      </attributes>
     </unit>
   </units>
   <units type="ground">
     <unit name="Ground Transport">
-      <attack>2</attack>
-      <defense>15</defense>
-      <movement>15</movement>
-      <vision>7</vision>
+      <attributes>
+        <attribute name="attack">2</attribute>
+        <attribute name="defense">2</attribute>
+        <attribute name="movement">10</attribute>
+        <attribute name="vision">10</attribute>
+      </attributes>
     </unit>
     <unit name="Infantry">
-      <attack>5</attack>
-      <defense>5</defense>
-      <movement>10</movement>
-      <vision>10</vision>
+      <attributes>
+        <attribute name="attack">2</attribute>
+        <attribute name="defense">2</attribute>
+        <attribute name="movement">10</attribute>
+        <attribute name="vision">10</attribute>
+      </attributes>
     </unit>
     <unit name="Tank">
-      <attack>15</attack>
-      <movement>15</movement>
-      <movement>5</movement>
-      <vision>5</vision>
+      <attributes>
+        <attribute name="attack">2</attribute>
+        <attribute name="defense">2</attribute>
+        <attribute name="movement">10</attribute>
+        <attribute name="vision">10</attribute>
+      </attributes>
     </unit>
   </units>
   <units type="sea">
     <unit name="Battleship">
-      <attack>2</attack>
-      <defense>15</defense>
-      <movement>15</movement>
-      <vision>7</vision>
+      <attributes>
+        <attribute name="attack">2</attribute>
+        <attribute name="defense">2</attribute>
+        <attribute name="movement">10</attribute>
+        <attribute name="vision">10</attribute>
+      </attributes>
     </unit>
     <unit name="Carrier">
-      <attack>5</attack>
-      <defense>5</defense>
-      <movement>10</movement>
-      <vision>10</vision>
+      <attributes>
+        <attribute name="attack">2</attribute>
+        <attribute name="defense">2</attribute>
+        <attribute name="movement">10</attribute>
+        <attribute name="vision">10</attribute>
+      </attributes>
     </unit>
     <unit name="Destroyer">
-      <attack>15</attack>
-      <movement>15</movement>
-      <movement>5</movement>
-      <vision>5</vision>
+      <attributes>
+        <attribute name="attack">2</attribute>
+        <attribute name="defense">2</attribute>
+        <attribute name="movement">10</attribute>
+        <attribute name="vision">10</attribute>
+      </attributes>
     </unit>
     <unit name="Submarine">
-      <attack>15</attack>
-      <movement>15</movement>
-      <movement>5</movement>
-      <vision>5</vision>
+      <attributes>
+        <attribute name="attack">2</attribute>
+        <attribute name="defense">2</attribute>
+        <attribute name="movement">10</attribute>
+        <attribute name="vision">10</attribute>
+      </attributes>
     </unit>
   </units>
 </base_units>

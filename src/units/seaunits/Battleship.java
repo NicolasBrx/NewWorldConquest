@@ -93,7 +93,7 @@ public class Battleship extends SeaUnit{
    */
   @Override
   public int getAttackScore(){
-    return this.attack;
+    return this.attributes.getAttack();
   }
   
   /**
@@ -104,7 +104,7 @@ public class Battleship extends SeaUnit{
    */
   @Override
   public int getDefenseScore(){
-    return this.defense;
+    return this.attributes.getDefense();
   }
   
   /**
@@ -115,7 +115,7 @@ public class Battleship extends SeaUnit{
    */
   @Override
   public int getMovementScore(){
-    return this.movement;
+    return this.attributes.getMovement();
   }
   
   /**
@@ -126,7 +126,7 @@ public class Battleship extends SeaUnit{
    */
   @Override
   public int getVisionScore(){
-    return this.vision;
+    return this.attributes.getVision();
   }
   
   /**
@@ -139,10 +139,10 @@ public class Battleship extends SeaUnit{
   @Override
   public void levelUp(){
     this.level = this.level + 1;
-    this.maxAttack = this.maxAttack + this.level;
-    this.maxDefense = this.maxDefense + this.level;
-    this.maxMovement = this.maxMovement + this.level;
-    this.maxVision = this.maxVision + this.level;
+    this.attributes.setMaxAttack(this.attributes.getMaxAttack() + this.level);
+    this.attributes.setMaxDefense(this.attributes.getMaxDefense() + this.level);
+    this.attributes.setMaxMovement(this.attributes.getMaxMovement() + this.level);
+    this.attributes.setMaxVision(this.attributes.getMaxVision() + this.level);
     resetAll();
   }
 }

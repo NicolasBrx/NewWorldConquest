@@ -2,7 +2,11 @@ package worldconquest;
 
 import java.util.ArrayList;
 import map.Map;
+import places.Harbour;
+import places.Place;
 import player.Player;
+import units.ModernUnit;
+import units.airunits.CombatPlane;
 
 /**
  *
@@ -29,6 +33,13 @@ public class WorldConquest {
   
   public static void decideStartingLocation(){
     
+  }
+  
+  public void test(){
+    ModernUnit cp = new CombatPlane(1,1,0,0,"toto");
+    System.out.println(cp.toString());
+    Place pl = new Harbour();
+    System.out.println(pl.toString());
   }
   
 }

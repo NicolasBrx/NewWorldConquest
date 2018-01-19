@@ -1,38 +1,41 @@
 <places>
   <place name="Airport">
-    <unit_capacity></unit_capacity>
-    <bonuses>
-      <bonus skill=""></bonus>
-    </bonuses>
-    <maluses>
-      <malus skill=""></malus>
-    </maluses>
+    <unit_capacity>3</unit_capacity>
+    <modifiers>
+      <modifier skill="defense">2</modifier>
+      <modifier skill="vision">5</modifier>
+    </modifiers>
   </place>
   <place name="City">
-    <unit_capacity></unit_capacity>
-    <bonuses>
-      <bonus skill=""></bonus>
-    </bonuses>
-    <maluses>
-      <malus skill=""></malus>
-    </maluses>
+    <unit_capacity>5</unit_capacity>
+    <modifiers>
+      <modifier skill="attack">-2</modifier>
+      <modifier skill="defense">5</modifier>
+      <modifier skill="vision">-2</modifier>
+    </modifiers>
   </place>
   <place name="Military Camp">
-    <unit_capacity></unit_capacity>
-    <bonuses>
-      <bonus skill=""></bonus>
-    </bonuses>
-    <maluses>
-      <malus skill=""></malus>
-    </maluses>
+    <unit_capacity>1</unit_capacity>
+    <modifiers>
+      <modifier skill="attack">5</modifier>
+      <modifier skill="defense">7</modifier>
+      <modifier skill="vision">-3</modifier>
+    </modifiers>
   </place>
   <place name="Oasis">
-    <unit_capacity></unit_capacity>
-    <bonuses>
-      <bonus skill=""></bonus>
-    </bonuses>
-    <maluses>
-      <malus skill=""></malus>
-    </maluses>
+    <unit_capacity>2</unit_capacity>
+    <modifiers>
+      <modifier skill="movement">5</modifier>
+      <modifier skill="vision">-2</modifier>
+      <modifier skill="defense">-2</modifier>
+    </modifiers>
+  </place>
+  <place name="Harbour">
+    <unit_capacity>25</unit_capacity>
+    <modifiers>
+      <modifier skill="movement">3</modifier>
+      <modifier skill="vision">-4</modifier>
+      <modifier skill="defense">2</modifier>
+    </modifiers>
   </place>
 </places>

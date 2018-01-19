@@ -44,44 +44,9 @@ public abstract class ModernUnit implements UnitInterface{
   protected int level;
   
   /**
-   * The max attack score that can be reached by the unit.
+   * The attributes of a unit as well as the max they can reach in each one
    */
-  protected int maxAttack;
-  
-  /**
-   * The current attack score of the unit when against another unit.
-   */
-  protected int attack;
-  
-  /**
-   * The max defense score that can be reached by the unit.
-   */
-  protected int maxDefense;
-  
-  /**
-   * The current defense score of the unit when against another unit.
-   */
-  protected int defense;
-  
-  /**
-   * The max movement score that can be reached by the unit.
-   */
-  protected int maxMovement;
-  
-  /**
-   * The current attack score of the unit when against another unit.
-   */
-  protected int movement;
-  
-  /**
-   * The max attack score that can be reached by the unit.
-   */
-  protected int maxVision;
-  
-  /**
-   * The current attack score of the unit when against another unit.
-   */
-  protected int vision;
+  protected UnitAttributes attributes;
   
   
   /****************************************************************************/
@@ -107,7 +72,7 @@ public abstract class ModernUnit implements UnitInterface{
   public ModernUnit(int team, Coordinates coord){
     this.id = "";
     this.team = team;
-    this.coordinates.receive(coord);
+    this.coordinates = new Coordinates(coord.X,coord.Y,coord.Z);
     this.level = 0;
   }
   
@@ -122,36 +87,67 @@ public abstract class ModernUnit implements UnitInterface{
   protected void createUnit(String genericName){
     XmlTool loader = new XmlTool();
     ArrayList<Integer> unit = loader.loadUnit(genericName);
-    this.maxAttack = unit.get(0);
-    this.maxDefense = unit.get(1);
-    this.maxMovement = unit.get(2);
-    this.maxVision = unit.get(3);
-    
-    this.attack = this.maxAttack;
-    this.defense = this.maxDefense;
-    this.movement = this.maxMovement;
-    this.movement = this.maxVision;
+    this.attributes = new UnitAttributes(unit.get(0),unit.get(1),unit.get(2),unit.get(3));
   }
   
   
   /****************************************************************************/
-  /** Constructor Methods                                                    **/
+  /** Getter and Setter Methods                                              **/
   /****************************************************************************/
   
   /**
+   * Modify the team owning the unit. Each team is identified by a positive
+   * natural number.
    * 
-   * @param team 
+   * @param team the number representing the team which owns the unit.
    */
   public void setTeam(int team){
     this.team = team;
   }
   
   /**
+   * Give the number identifying the team owning of the unit.
    * 
-   * @param newCoordinates 
+   * @return the number of the owner team.
+   */
+  public int getTeam(){
+    return this.team;
+  }
+  
+  /**
+   * Modify the coordinates of a unit following a creation or a movement.
+   * 
+   * @param newCoordinates the new coordinates of the unit.
    */
   public void setCoordinates(Coordinates newCoordinates){
     this.coordinates.receive(newCoordinates);
+  }
+  
+  /**
+   * Give the current set of coordinates where the unit can be found on the map.
+   * 
+   * @return the current coordinates of the unit.
+   */
+  public Coordinates getCoordinates(){
+    return this.coordinates;
+  }
+  
+  /**
+   * Modify the unique identifier String for the unit.
+   * 
+   * @param id the unique identifier of the unit.
+   */
+  public void setId(String id){
+    this.id = id;
+  }
+  
+  /**
+   * Give the unique identifier String of the unit.
+   * 
+   * @return the unique identifier of the unit.
+   */
+  public String getId(){
+    return this.id;
   }
   
   
@@ -171,7 +167,7 @@ public abstract class ModernUnit implements UnitInterface{
    */
   @Override
   public int damage(int attackerDV){
-    return 0;
+    return 1;
   }
   
   /**
@@ -193,28 +189,28 @@ public abstract class ModernUnit implements UnitInterface{
    * Reset the attack score of the unit to its max level. 
    */
   public void resetAttack(){
-    this.attack = this.maxAttack;
+    this.attributes.setAttack(this.attributes.getMaxAttack());
   }
   
   /**
    * Reset the defense score of the unit to its max level.
    */
   public void resetDefense(){
-    this.defense = this.maxDefense;
+    this.attributes.setDefense(this.attributes.getMaxDefense());
   }
   
   /**
    * Reset the movement score of the unit to its max level.
    */
   public void resetMovement(){
-    this.movement = this.maxMovement;
+    this.attributes.setMovement(this.attributes.getMaxMovement());
   }
   
   /**
    * Reset the vision score of the unit to its max level.
    */
   public void resetVision(){
-    this.vision = this.maxVision;
+    this.attributes.setVision(this.attributes.getMaxVision());
   }
   
   /**

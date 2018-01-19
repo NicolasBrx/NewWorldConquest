@@ -1,14 +1,57 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package places;
 
 /**
  *
- * @author nicolas
+ * @author Nicolas Brax
  */
 public interface PlaceInterface {
+  
+  /**
+   * 
+   * @return 
+   */
+  int getBaseVision();
+  
+  /**
+   * 
+   * @return 
+   */
+  int getAttackBM();
+  
+  /**
+   * 
+   * @return 
+   */
+  int getDefenseBM();
+  
+  /**
+   * 
+   * @return 
+   */
+  int getVisionBM();
+  
+  /**
+   * 
+   * @return 
+   */
+  int getMovementBM();
+  
+  /**
+   * 
+   * @return 
+   */
+  int getUnitCapacity();
+  
+  /**
+   * 
+   * @return 
+   */
+  int getOwnerTeam();
+  
+  /**
+   * 
+   * @param newOwner 
+   */
+  void setOwnerTeam(int newOwner);
   
 }

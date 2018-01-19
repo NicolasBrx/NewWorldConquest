@@ -19,7 +19,7 @@ public class CombatPlane extends AirUnit{
   
   /**
    * The generic and constant name of the unit. This is also used to load the 
-   * several scores of the unit in the file data/base_unit.xml.
+   * several scores of the unit in the file data/base_units.xml.
    */
   private final String GENERIC_NAME = "Combat Plane";
   
@@ -93,7 +93,7 @@ public class CombatPlane extends AirUnit{
    */
   @Override
   public int getAttackScore(){
-    return this.attack;
+    return this.attributes.getAttack();
   }
   
   /**
@@ -104,7 +104,7 @@ public class CombatPlane extends AirUnit{
    */
   @Override
   public int getDefenseScore(){
-    return this.defense;
+    return this.attributes.getDefense();
   }
   
   /**
@@ -115,7 +115,7 @@ public class CombatPlane extends AirUnit{
    */
   @Override
   public int getMovementScore(){
-    return this.movement;
+    return this.attributes.getMovement();
   }
   
   /**
@@ -126,7 +126,7 @@ public class CombatPlane extends AirUnit{
    */
   @Override
   public int getVisionScore(){
-    return this.vision;
+    return this.attributes.getVision();
   }
   
   /**
@@ -139,10 +139,20 @@ public class CombatPlane extends AirUnit{
   @Override
   public void levelUp(){
     this.level = this.level + 1;
-    this.maxAttack = this.maxAttack + this.level;
-    this.maxDefense = this.maxDefense + this.level;
-    this.maxMovement = this.maxMovement + this.level;
-    this.maxVision = this.maxVision + this.level;
+    this.attributes.setMaxAttack(this.attributes.getMaxAttack() + this.level);
+    this.attributes.setMaxDefense(this.attributes.getMaxDefense() + this.level);
+    this.attributes.setMaxMovement(this.attributes.getMaxMovement() + this.level);
+    this.attributes.setMaxVision(this.attributes.getMaxVision() + this.level);
     resetAll();
+  }
+  
+  @Override
+  public String toString(){
+    String toReturn;
+    toReturn = "Combat Plane: " + this.attributes.getAttack() + " - "
+             + this.attributes.getDefense() + " - "
+             + this.attributes.getMovement() + " - "
+             + this.attributes.getVision();
+    return toReturn;
   }
 }
