@@ -19,7 +19,7 @@ public class Infantry extends GroundUnit{
   
   /**
    * The generic and constant name of the unit. This is also used to load the 
-   * several scores of the unit in the file data/base_unit.xml.
+   * several scores of the unit from the file data/base_unit.xml.
    */
   private final String GENERIC_NAME = "Infantry";
   

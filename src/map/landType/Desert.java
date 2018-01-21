@@ -1,5 +1,7 @@
 package map.landType;
 
+import map.Tile;
+
 /**
  *
  * @author nicolas

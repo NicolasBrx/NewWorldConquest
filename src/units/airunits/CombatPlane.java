@@ -19,7 +19,7 @@ public class CombatPlane extends AirUnit{
   
   /**
    * The generic and constant name of the unit. This is also used to load the 
-   * several scores of the unit in the file data/base_units.xml.
+   * several scores of the unit from the file data/base_units.xml.
    */
   private final String GENERIC_NAME = "Combat Plane";
   

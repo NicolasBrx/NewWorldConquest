@@ -11,7 +11,7 @@ import tools.XmlTool;
  * 
  * @author Nicolas Brax
  */
-public abstract class ModernUnit implements UnitInterface{
+public abstract class ModernUnit extends Unit{
   
   /****************************************************************************/
   /** Private Attributes                                                     **/
