@@ -19,6 +19,7 @@ public class XmlTool {
   private final String dataPath = System.getProperty("user.dir") + "/data/";
   private final String baseUnitFile = "base_units.xml";
   private final String basePlaceFile = "base_places.xml";
+  private final String baseLandFile = "base_lands.xml";
   
   public XmlTool(){
     // things to do ?
@@ -103,6 +104,42 @@ public class XmlTool {
             }//switch
           }//for modifiers
           Collections.addAll(toReturn, attack,defense,movement,vision);
+          found = true;
+        }// if name == placeName
+        if(found){break;}
+      }//for places
+    }//try
+    catch(JDOMException | IOException e){
+    }//catch
+    return toReturn;
+  }
+  
+  public ArrayList<Integer> loadLand(String landName){
+    ArrayList<Integer> toReturn = new ArrayList<>();
+    File inputFile = new File(dataPath + baseLandFile);
+    try{
+      SAXBuilder saxBuilder = new SAXBuilder();
+      Document document = saxBuilder.build(inputFile);
+      Element root = document.getRootElement();
+      List<Element> lands = root.getChildren();
+      boolean found = false;
+      for(Element land: lands){
+        if(land.getAttributeValue("name").equalsIgnoreCase(landName)){
+          int movement = 0, vision = 0;
+          for(Element modifier : land.getChild("modifiers").getChildren()){
+            switch(modifier.getAttributeValue("skill")){
+              case "movement":
+                movement = Integer.parseInt(modifier.getText());
+                break;
+              case "vision":
+                vision = Integer.parseInt(modifier.getText());
+                break;
+              default:
+                //TODO: should no be reached, throw error
+                break;
+            }//switch
+          }//for modifiers
+          Collections.addAll(toReturn, movement,vision);
           found = true;
         }// if name == placeName
         if(found){break;}

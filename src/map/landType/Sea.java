@@ -8,6 +8,7 @@ import map.Tile;
  */
 public class Sea extends Tile{
   
+  private final String landType = "Sea";
   
   public Sea(){
     super();
@@ -15,5 +16,11 @@ public class Sea extends Tile{
   
   public Sea(int x, int y){
     super(x,y);
+    createLandType(this.landType)  ;
+  }
+  
+  @Override
+  public String getLandType(){
+    return this.landType;
   }
 }
