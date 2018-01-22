@@ -1,8 +1,9 @@
 package map;
 
+//TODO: add proper javadoc.
+
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import places.Place;
 import units.Unit;
 

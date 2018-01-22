@@ -38,4 +38,12 @@
       <modifier skill="defense">2</modifier>
     </modifiers>
   </place>
+  <place name="Oil Derrick">
+    <unit_capacity>2</unit_capacity>
+    <modifiers>
+      <modifier skill="movement">3</modifier>
+      <modifier skill="vision">-4</modifier>
+      <modifier skill="defense">2</modifier>
+    </modifiers>
+  </place>
 </places>

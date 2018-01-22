@@ -1,7 +1,10 @@
 package units;
 
+//TODO: add proper javadoc to class as well as for all children of this class.
+
 import java.util.ArrayList;
 import tools.Coordinates;
+import tools.WCException;
 import tools.XmlTool;
 
 /**
@@ -83,8 +86,10 @@ public abstract class ModernUnit extends Unit{
    * 
    * @param genericName the name of the unit as it can be retrieved in the
    *                    base unit file.
+   * @throws tools.WCException the exception is thrown whenever the xml file
+   *                            cannot be read properly.
    */
-  protected void createUnit(String genericName){
+  protected void createUnit(String genericName) throws WCException{
     XmlTool loader = new XmlTool();
     ArrayList<Integer> unit = loader.loadUnit(genericName);
     this.attributes = new UnitAttributes(unit.get(0),unit.get(1),unit.get(2),unit.get(3));

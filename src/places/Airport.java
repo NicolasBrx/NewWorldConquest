@@ -1,6 +1,7 @@
 package places;
 
 import tools.Coordinates;
+import tools.WCException;
 
 /**
  *
@@ -31,7 +32,7 @@ public class Airport extends Place {
   /**
    * 
    */
-  public Airport(){
+  public Airport() throws WCException{
     super(new Coordinates(0,0,0));
     createPlace(GENERIC_NAME,-1);
   }
@@ -43,7 +44,7 @@ public class Airport extends Place {
    * @param z 
    * @param nb 
    */
-  public Airport(int x, int y, int z, int nb){
+  public Airport(int x, int y, int z, int nb) throws WCException{
     super(new Coordinates(x,y,z));
     createPlace(GENERIC_NAME,nb);
   }

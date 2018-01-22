@@ -1,7 +1,10 @@
 package places;
 
+//TODO: add proper javadoc to class as well as for all children of this class.
+
 import java.util.ArrayList;
 import tools.Coordinates;
+import tools.WCException;
 import tools.XmlTool;
 
 /**
@@ -72,8 +75,9 @@ public abstract class Place implements PlaceInterface{
    * 
    * @param placeName 
    * @param nb 
+   * @throws tools.WCException 
    */
-  protected void createPlace(String placeName, int nb){
+  protected void createPlace(String placeName, int nb) throws WCException{
     XmlTool loader = new XmlTool();
     ArrayList<Integer> place = loader.loadPlace(placeName);
     this.scoreModifiers = new PlaceAttributes(place.get(0),place.get(1),
@@ -100,6 +104,22 @@ public abstract class Place implements PlaceInterface{
    */
   public String getPlaceId(){
     return this.placeId;
+  }
+  
+  /**
+   * Modify the name of the place.
+   * @param newName The new name of the place.
+   */
+  public void setName(String newName){
+    this.name = newName;
+  }
+  
+  /**
+   * Give the name of the place.
+   * @return the name of the place.
+   */
+  public String getName(){
+    return this.name;
   }
   
   
@@ -180,18 +200,10 @@ public abstract class Place implements PlaceInterface{
   }
   
   /**
-   * Modify the name of the place.
-   * @param newName The new name of the place.
+   * 
+   * @return 
    */
-  public void setName(String newName){
-    this.name = newName;
-  }
-  
-  /**
-   * Give the name of the place.
-   * @return the name of the place.
-   */
-  public String getName(){
-    return this.name;
+  public Coordinates getCoordinates(){
+    return this.coordinates;
   }
 }

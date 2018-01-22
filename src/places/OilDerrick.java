@@ -5,9 +5,9 @@ import tools.WCException;
 
 /**
  *
- * @author Nicolas Brax
+ * @author nicolas
  */
-public class Harbour extends Place {
+public class OilDerrick extends Place {
   
   /****************************************************************************/
   /** Constant Attributes                                                    **/
@@ -17,13 +17,8 @@ public class Harbour extends Place {
    * The generic and constant name of the place. This is also used to load the 
    * several values related to the place in the file data/base_places.xml.
    */
-  private final String GENERIC_NAME = "Harbour";
+  private final String GENERIC_NAME = "Oil Derrick";
   
-  /**
-   * 
-   */
-  private int SHIP_CAPACITY = 10;
- 
   
   /****************************************************************************/
   /** Constructor Methods                                                    **/
@@ -32,7 +27,7 @@ public class Harbour extends Place {
   /**
    * 
    */
-  public Harbour() throws WCException{
+  public OilDerrick() throws WCException{
     super(new Coordinates(0,0,0));
     createPlace(GENERIC_NAME,-1);
   }
@@ -44,7 +39,7 @@ public class Harbour extends Place {
    * @param z 
    * @param nb 
    */
-  public Harbour(int x, int y, int z, int nb) throws WCException{
+  public OilDerrick(int x, int y, int z, int nb) throws WCException{
     super(new Coordinates(x,y,z));
     createPlace(GENERIC_NAME,nb);
   }
@@ -55,31 +50,12 @@ public class Harbour extends Place {
   /****************************************************************************/
   
   /**
+   * Give the generic name of the place. This name is the one used to refer 
+   * to the file in which all initial values and scores are set for places.
    * 
-   * @return 
+   * @return the generic name.
    */
   public String getGenericName(){
     return this.GENERIC_NAME;
   }
-  
-  /**
-   * Give the ship capacity of the harbour. This does not count the units that
-   * are disposed at this location.
-   * 
-   * @return the plane capacity of the airfield.
-   */
-  public int getShipCapacity(){
-    return this.SHIP_CAPACITY;
-  }
-  
-  @Override
-  public String toString(){
-    String toReturn;
-    toReturn = "Harbour: " + this.scoreModifiers.getAttackModifier() + " - "
-             + this.scoreModifiers.getDefenseModifier() + " - "
-             + this.scoreModifiers.getMovementModifier() + " - "
-             + this.scoreModifiers.getVisionModifier() + " - "
-             + this.scoreModifiers.getUnitCapacity() + " - ";
-    return toReturn;
-  } 
 }

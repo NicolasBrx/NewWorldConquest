@@ -1,6 +1,9 @@
 package map.landType;
 
+//TODO: add proper javadoc.
+
 import map.Tile;
+import tools.WCException;
 
 /**
  *
@@ -14,7 +17,7 @@ public class Desert extends Tile{
     super();
   }
   
-  public Desert(int x, int y){
+  public Desert(int x, int y) throws WCException{
     super(x,y);
     createLandType(this.landType)  ;
   }

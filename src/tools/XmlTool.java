@@ -25,7 +25,7 @@ public class XmlTool {
     // things to do ?
   }
   
-  public ArrayList<Integer> loadUnit(String unitName){
+  public ArrayList<Integer> loadUnit(String unitName) throws WCException{
     ArrayList<Integer> toReturn = new ArrayList<>();
     File inputFile = new File(dataPath + baseUnitFile);
     try{
@@ -54,8 +54,7 @@ public class XmlTool {
                   vision = Integer.parseInt(attribute.getText());
                   break;
                 default:
-                  //TODO: should no be reached, throw error
-                  break;
+                  throw new WCException("Unit can't be loaded, it might not exists in the file data/base_units.xml");
               }//switch
             }//for attribute
             Collections.addAll(toReturn, attack,defense,movement,vision);
@@ -71,7 +70,7 @@ public class XmlTool {
     return toReturn;
   }
   
-  public ArrayList<Integer> loadPlace(String placeName){
+  public ArrayList<Integer> loadPlace(String placeName) throws WCException{
     ArrayList<Integer> toReturn = new ArrayList<>();
     File inputFile = new File(dataPath + basePlaceFile);
     try{
@@ -99,8 +98,7 @@ public class XmlTool {
                 vision = Integer.parseInt(modifier.getText());
                 break;
               default:
-                //TODO: should no be reached, throw error
-                break;
+                throw new WCException("Place can't be loaded, it might not exists in the file data/base_units.xml");
             }//switch
           }//for modifiers
           Collections.addAll(toReturn, attack,defense,movement,vision);
@@ -114,7 +112,7 @@ public class XmlTool {
     return toReturn;
   }
   
-  public ArrayList<Integer> loadLand(String landName){
+  public ArrayList<Integer> loadLand(String landName) throws WCException{
     ArrayList<Integer> toReturn = new ArrayList<>();
     File inputFile = new File(dataPath + baseLandFile);
     try{
@@ -135,8 +133,7 @@ public class XmlTool {
                 vision = Integer.parseInt(modifier.getText());
                 break;
               default:
-                //TODO: should no be reached, throw error
-                break;
+                throw new WCException("Land can't be loaded, it might not exists in the file data/base_units.xml");
             }//switch
           }//for modifiers
           Collections.addAll(toReturn, movement,vision);

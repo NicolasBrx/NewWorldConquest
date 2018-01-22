@@ -1,6 +1,7 @@
 package units.airunits;
 
 import tools.Coordinates;
+import tools.WCException;
 
 /**
  * This class defines the specific method of a Combat Plane.
@@ -42,7 +43,7 @@ public class CombatPlane extends AirUnit{
    * Default Constructor
    * The Unit is built with the standart name and scores but negative experience
    */
-  public CombatPlane(){
+  public CombatPlane() throws WCException{
     super(0,new Coordinates(0,0),null);
     createUnit(this.GENERIC_NAME);
     this.name = this.GENERIC_NAME;
@@ -56,7 +57,7 @@ public class CombatPlane extends AirUnit{
    * @param y    the Y coordinate on which the unit is created.
    * @param camp the identificator of the base camp of the unit.
    */
-  public CombatPlane(int team,int nb, int x, int y, String camp){
+  public CombatPlane(int team,int nb, int x, int y, String camp) throws WCException{
     super(team,new Coordinates(x,y),camp);
     createUnit(this.GENERIC_NAME);
     this.name = this.GENERIC_NAME + " " + (nb < 10 ? "0" : "") + nb;

@@ -1,6 +1,7 @@
 package units.seaunits;
 
 import tools.Coordinates;
+import tools.WCException;
 
 /**
  * This class defines the specific method of a Carrier unit.
@@ -42,7 +43,7 @@ public class Carrier extends SeaUnit{
    * Default Constructor
    * The Unit is built with the standart name and scores but negative experience
    */
-  public Carrier(){
+  public Carrier() throws WCException{
     super(0,new Coordinates(0,0),null);
     createUnit(this.GENERIC_NAME);
     this.name = this.GENERIC_NAME;
@@ -56,7 +57,7 @@ public class Carrier extends SeaUnit{
    * @param y       the Y coordinate on which the unit is created.
    * @param harbour the identificator of the base camp of the unit.
    */
-  public Carrier(int team,int nb, int x, int y,String harbour){
+  public Carrier(int team,int nb, int x, int y,String harbour) throws WCException{
     super(team,new Coordinates(x,y),harbour);
     createUnit(this.GENERIC_NAME);
     this.name = this.GENERIC_NAME + " " + (nb < 10 ? "0" : "") + nb;

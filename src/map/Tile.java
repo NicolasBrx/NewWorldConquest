@@ -1,9 +1,12 @@
 package map;
 
+//TODO: add proper javadoc.
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import places.Place;
 import tools.Coordinates;
+import tools.WCException;
 import tools.XmlTool;
 import units.Unit;
 
@@ -23,6 +26,7 @@ public abstract class Tile implements TileInterface {
     tileCoord = new Coordinates(0,0);
     specialPlace = null;
     units = null;
+    units = new ArrayList<>();
   }
   
   public Tile(int x,int y){
@@ -31,7 +35,7 @@ public abstract class Tile implements TileInterface {
     units = new ArrayList<>();
   }
   
-  public void createLandType(String landType){
+  public void createLandType(String landType) throws WCException{
     XmlTool xml = new XmlTool();
     this.visionModifier = xml.loadLand(landType).get(0);
     this.movementModifier = xml.loadLand(landType).get(1);

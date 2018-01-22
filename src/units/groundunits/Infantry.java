@@ -1,6 +1,7 @@
 package units.groundunits;
 
 import tools.Coordinates;
+import tools.WCException;
 
 /**
  * This class defines the specific method of an Infantry unit.
@@ -42,7 +43,7 @@ public class Infantry extends GroundUnit{
    * Default Constructor
    * The Unit is built with the standart name and scores but negative experience
    */
-  public Infantry(){
+  public Infantry() throws WCException{
     super(0,new Coordinates(0,0));
     createUnit(this.GENERIC_NAME);
     this.name = this.GENERIC_NAME;
@@ -55,7 +56,7 @@ public class Infantry extends GroundUnit{
    * @param x    the X coordinate on which the unit is created.
    * @param y    the Y coordinate on which the unit is created.
    */
-  public Infantry(int team,int nb, int x, int y){
+  public Infantry(int team,int nb, int x, int y) throws WCException{
     super(team,new Coordinates(x,y));
     createUnit(this.GENERIC_NAME);
     this.name = this.GENERIC_NAME + " " + (nb < 10 ? "0" : "") + nb;

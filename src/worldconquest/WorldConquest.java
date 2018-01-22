@@ -1,14 +1,12 @@
 package worldconquest;
 
 import java.util.ArrayList;
+import java.util.Random;
 import map.Map;
-import map.Tile;
-import map.landType.Desert;
-import places.Harbour;
-import places.Place;
 import player.Player;
+import tools.WCException;
 import units.ModernUnit;
-import units.airunits.CombatPlane;
+import units.airunits.*;
 
 /**
  *
@@ -39,6 +37,25 @@ public class WorldConquest {
   }
   
   public static void test(){
+    
+    
+    Random rand = new Random();
+    try{
+      Map test = new Map(20,20);
+      ModernUnit cp = new CombatPlane(1,1,rand.nextInt(10),rand.nextInt(10),"");
+      test.getTile(cp.getCoordinates().X,cp.getCoordinates().Y).addUnit(cp);
+      ModernUnit cs = new TransportPlane(1,1,rand.nextInt(10),rand.nextInt(10),"");
+      test.getTile(cs.getCoordinates().X,cs.getCoordinates().Y).addUnit(cs);
+      System.out.println(test.toString());
+    }
+    catch(WCException e){
+      // TODO: find a solution...
+      System.out.println("TOTO");
+    }
+    
+    
+    
+    /*
     ModernUnit cp = new CombatPlane(1,1,0,0,"toto");
     System.out.println(cp.toString());
     Place pl = new Harbour();
@@ -60,6 +77,7 @@ public class WorldConquest {
     else{
       System.out.println("!OK");
     }
+    */
   }
   
 }

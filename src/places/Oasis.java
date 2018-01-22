@@ -1,6 +1,7 @@
 package places;
 
 import tools.Coordinates;
+import tools.WCException;
 
 /**
  *
@@ -26,7 +27,7 @@ public class Oasis extends Place {
   /**
    * 
    */
-  public Oasis(){
+  public Oasis() throws WCException{
     super(new Coordinates(0,0,0));
     createPlace(GENERIC_NAME,-1);
   }
@@ -38,7 +39,7 @@ public class Oasis extends Place {
    * @param z 
    * @param nb 
    */
-  public Oasis(int x, int y, int z, int nb){
+  public Oasis(int x, int y, int z, int nb) throws WCException{
     super(new Coordinates(x,y,z));
     createPlace(GENERIC_NAME,nb);
   }
