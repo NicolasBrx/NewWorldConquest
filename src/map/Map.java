@@ -2,6 +2,7 @@ package map;
 
 //TODO: add proper javadoc.
 
+import java.util.ArrayList;
 import java.util.NavigableMap;
 import java.util.Random;
 import java.util.TreeMap;
@@ -100,6 +101,7 @@ public class Map {
   }
   
   private void generateSpecialPlaces() throws WCException{
+    
     //TODO: make an xml file to generation settings and nothing is then set hard coded
     //TODO: modify to generate proper name (count already added places)
     //TODO: use xml to load right classes => no hard code for name classes...
@@ -107,47 +109,47 @@ public class Map {
     for(int i = 0; i < theMap.length ; ++i){
       for(int j = 0 ; j < theMap[0].length ; ++j){
     
-        //TODO: better this or add a remove function?!
-        RandomCollection rc = new RandomCollection()
-                              .add(50,"None")
-                              .add(2,"Airport").add(2,"City").add(2, "Military Camp");
+        if(!theMap[i][j].getLandType().equalsIgnoreCase("Sea")){
+          RandomCollection rc = new RandomCollection()
+                                .add(50,"None")
+                                .add(2,"Airport").add(2,"City").add(2, "Military Camp");
         
-        if(theMap[i][j].getLandType().equalsIgnoreCase("Desert")){
-          rc.add(25,"Oasis").add(25,"Oil Derrick");
-        }
-        else if(theMap[i][j].getLandType().equalsIgnoreCase("Sea")){
-          rc.add(25,"Harbour");
-        }
-        else{
-          rc.add(2,"Oasis").add(2,"Oil Derrick").add(2,"Harbour");
-        }
+          if(theMap[i][j].getLandType().equalsIgnoreCase("Desert")){
+            rc.add(25,"Oasis").add(25,"Oil Derrick");
+          }
+          else if(oneOfNeighboursIs(i,j,"Sea")){
+            rc.add(50,"Harbour");
+          }
+          else{
+            rc.add(2,"Oasis").add(2,"Oil Derrick").add(2,"Harbour");
+          }
         
-        switch(rc.next()){
-          case "Airport":
-            theMap[i][j].addSpecialPlace(new Airport(i,j,0,1));
-            break;
-          case "City":
-            theMap[i][j].addSpecialPlace(new City(i,j,0,1));
-            break;
-          case "Military Camp":
-            theMap[i][j].addSpecialPlace(new MilitaryCamp(i,j,0,1));
-            break;
-          case "Oasis":
-            theMap[i][j].addSpecialPlace(new Oasis(i,j,0,1));
-            break;
-          case "Oil Derrick":
-            theMap[i][j].addSpecialPlace(new OilDerrick(i,j,0,1));
-            break;
-          case "Harbour":
-            theMap[i][j].addSpecialPlace(new Harbour(i,j,0,1));
-            break;
-          case "None":
-            // We don't add any special places to this location.
-            break;
-          default:
-            throw new WCException("Error on randomization for a land type. [generateLands()]");
-        }//switch rc.next()
-        
+         switch(rc.next()){
+            case "Airport":
+              theMap[i][j].addSpecialPlace(new Airport(i,j,0,1));
+              break;
+            case "City":
+              theMap[i][j].addSpecialPlace(new City(i,j,0,1));
+              break;
+            case "Military Camp":
+              theMap[i][j].addSpecialPlace(new MilitaryCamp(i,j,0,1));
+              break;
+            case "Oasis":
+             theMap[i][j].addSpecialPlace(new Oasis(i,j,0,1));
+              break;
+            case "Oil Derrick":
+              theMap[i][j].addSpecialPlace(new OilDerrick(i,j,0,1));
+              break;
+            case "Harbour":
+              theMap[i][j].addSpecialPlace(new Harbour(i,j,0,1));
+              break;
+           case "None":
+             // We don't add any special places to this location.
+             break;
+           default:
+             throw new WCException("Error on randomization for a land type. [generateLands()]");
+          }//switch rc.next()
+        }//if !Sea
       }//for j
     }// for i
   }
@@ -158,8 +160,34 @@ public class Map {
    * @param y
    * @return 
    */
-  public Tile[] getNeighbours(int x, int y){
-    return null;
+  public ArrayList<Tile> getNeighbours(int x, int y){
+    ArrayList<Tile> toReturn = new ArrayList<>();
+    
+    if(this.tileForms == geometricForm.HEXAGONAL){
+      //TODO: add this feature...
+    }
+    else if(this.tileForms == geometricForm.PAVEMENT){
+      for(int i = (x > 0 ? x-1 : x) ; i <= ((x < (this.theMap.length - 1)) ? x+1 : x) ; ++i){
+        for(int j = (y > 0 ? y-1 : y) ; j <= ((y < (this.theMap[0].length - 1)) ? y+1 : y) ; ++j){
+          if(i != x || j != y){
+            System.out.println("Coord: " + i + "," + j);
+            toReturn.add(this.theMap[i][j]);
+          }
+        }//for j
+      }// for i
+    }
+    return toReturn;
+  }
+  
+  public boolean oneOfNeighboursIs(int x,int y,String landtype){
+    ArrayList<Tile> neighbours = getNeighbours(x,y);
+    boolean found = false;
+    int i = 0;
+    while(!found && i < neighbours.size()){
+      found = neighbours.get(i).getLandType().equalsIgnoreCase(landtype);
+      i++;
+    }
+    return found;
   }
   
   public geometricForm getGeometricForm(){

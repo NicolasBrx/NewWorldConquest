@@ -1,7 +1,5 @@
 package units;
 
-//TODO: add proper javadoc to class as well as for all children of this class.
-
 import java.util.ArrayList;
 import tools.Coordinates;
 import tools.WCException;

@@ -41,43 +41,22 @@ public class WorldConquest {
     
     Random rand = new Random();
     try{
+      // test map creation
       Map test = new Map(20,20);
+      
+      // test unit creation
       ModernUnit cp = new CombatPlane(1,1,rand.nextInt(10),rand.nextInt(10),"");
       test.getTile(cp.getCoordinates().X,cp.getCoordinates().Y).addUnit(cp);
       ModernUnit cs = new TransportPlane(1,1,rand.nextInt(10),rand.nextInt(10),"");
       test.getTile(cs.getCoordinates().X,cs.getCoordinates().Y).addUnit(cs);
+      
+      // test map display (string style)
       System.out.println(test.toString());
     }
     catch(WCException e){
       // TODO: find a solution...
       System.out.println("TOTO");
     }
-    
-    
-    
-    /*
-    ModernUnit cp = new CombatPlane(1,1,0,0,"toto");
-    System.out.println(cp.toString());
-    Place pl = new Harbour();
-    System.out.println(pl.toString());
-    Tile testTile = new Desert(0,0);
-    testTile.addUnit(cp);
-    if(testTile.hasUnit()){
-      System.out.println("OK");
-      System.out.println(testTile.getUnits().get(0).toString());
-    }
-    else{
-      System.out.println("!OK");
-    }
-    testTile.addSpecialPlace(pl);
-    if(testTile.isSpecialPlace()){
-      System.out.println("OK");
-      System.out.println(testTile.getSpecialPlace().toString());
-    }
-    else{
-      System.out.println("!OK");
-    }
-    */
   }
   
 }
