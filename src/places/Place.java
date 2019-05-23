@@ -40,11 +40,6 @@ public abstract class Place implements PlaceInterface{
   /**
    * 
    */
-  private Coordinates coordinates;
-  
-  /**
-   * 
-   */
   protected PlaceAttributes scoreModifiers;
   
   
@@ -56,19 +51,8 @@ public abstract class Place implements PlaceInterface{
    * 
    */
   public Place(){
-    coordinates.receive(new Coordinates(0,0));
     this.ownerTeam = -1;
     this.baseVision = -1;
-  }
-  
-  /**
-   * 
-   * @param coordinates 
-   */
-  public Place(Coordinates coordinates){
-    this.coordinates = new Coordinates(coordinates.X,coordinates.Y,coordinates.Z);
-    this.ownerTeam = 0;
-    this.baseVision = 2;
   }
   
   /**
@@ -197,13 +181,5 @@ public abstract class Place implements PlaceInterface{
   @Override
   public int getBaseVision(){
     return this.baseVision;
-  }
-  
-  /**
-   * 
-   * @return 
-   */
-  public Coordinates getCoordinates(){
-    return this.coordinates;
   }
 }

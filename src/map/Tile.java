@@ -16,22 +16,14 @@ import units.Unit;
  */
 public abstract class Tile implements TileInterface {
   
-  private final Coordinates tileCoord;
   private int visionModifier;
   private int movementModifier;
   private Place specialPlace;
   private ArrayList<Unit> units;
   
   public Tile(){
-    tileCoord = new Coordinates(0,0);
     specialPlace = null;
     units = null;
-    units = new ArrayList<>();
-  }
-  
-  public Tile(int x,int y){
-    tileCoord = new Coordinates(x,y);
-    specialPlace = null;
     units = new ArrayList<>();
   }
   

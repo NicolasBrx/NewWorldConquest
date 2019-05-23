@@ -11,6 +11,7 @@ public class PlaceAttributes {
   private int defenseModifier;
   private int movementModifier;
   private int visionModifier;
+  private boolean destroyed;
   
   public PlaceAttributes(){
     this.unitCapacity = -1;
@@ -18,6 +19,7 @@ public class PlaceAttributes {
     this.defenseModifier = -1;
     this.visionModifier = -1;
     this.movementModifier = -1;
+    this.destroyed =false;
   }
   
   public PlaceAttributes(int unitCapacity, int attackModifier, 
@@ -27,6 +29,7 @@ public class PlaceAttributes {
     this.defenseModifier = defenseModifier;
     this.visionModifier = visionModifier;
     this.movementModifier = movementModifier;
+    this.destroyed = false;
   }
 
   public int getUnitCapacity() {
@@ -68,6 +71,13 @@ public class PlaceAttributes {
   public void setVisionModifier(int visionModifier) {
     this.visionModifier = visionModifier;
   }
-  
+
+  public boolean isDestroyed(){
+    return destroyed;
+  }
+
+  public void setDestroyed(boolean destroyed){
+    this.destroyed = destroyed;
+  }
   
 }

@@ -28,7 +28,7 @@ public class OilDerrick extends Place {
    * 
    */
   public OilDerrick() throws WCException{
-    super(new Coordinates(0,0,0));
+    super();
     createPlace(GENERIC_NAME,-1);
   }
   
@@ -39,8 +39,8 @@ public class OilDerrick extends Place {
    * @param z 
    * @param nb 
    */
-  public OilDerrick(int x, int y, int z, int nb) throws WCException{
-    super(new Coordinates(x,y,z));
+  public OilDerrick(int nb) throws WCException{
+    super();
     createPlace(GENERIC_NAME,nb);
   }
   

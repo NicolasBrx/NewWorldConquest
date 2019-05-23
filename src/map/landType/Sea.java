@@ -3,7 +3,6 @@ package map.landType;
 //TODO: add proper javadoc.
 
 import map.Tile;
-import tools.WCException;
 
 /**
  *
@@ -15,11 +14,6 @@ public class Sea extends Tile{
   
   public Sea(){
     super();
-  }
-  
-  public Sea(int x, int y) throws WCException{
-    super(x,y);
-    createLandType(this.landType)  ;
   }
   
   @Override

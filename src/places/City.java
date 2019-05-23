@@ -28,7 +28,7 @@ public class City extends Place {
    * 
    */
   public City() throws WCException{
-    super(new Coordinates(0,0,0));
+    super();
     createPlace(GENERIC_NAME,-1);
   }
   
@@ -39,8 +39,8 @@ public class City extends Place {
    * @param z 
    * @param nb 
    */
-  public City(int x, int y, int z, int nb) throws WCException{
-    super(new Coordinates(x,y,z));
+  public City(int nb) throws WCException{
+    super();
     createPlace(GENERIC_NAME,nb);
   }
   
