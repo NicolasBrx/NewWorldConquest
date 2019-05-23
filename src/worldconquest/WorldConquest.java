@@ -45,12 +45,10 @@ public class WorldConquest {
       Map test = new Map();
       
       // test unit creation
-      /*
-      ModernUnit cp = new CombatPlane(1,1,rand.nextInt(10),rand.nextInt(10),"");
+      ModernUnit cp = new CombatPlane(1,1,rand.nextInt(9),rand.nextInt(9),"");
       test.getTile(cp.getCoordinates().X,cp.getCoordinates().Y).addUnit(cp);
-      ModernUnit cs = new TransportPlane(1,1,rand.nextInt(10),rand.nextInt(10),"");
+      ModernUnit cs = new TransportPlane(1,1,rand.nextInt(9),rand.nextInt(9),"");
       test.getTile(cs.getCoordinates().X,cs.getCoordinates().Y).addUnit(cs);
-      */
       
       // test map display (string style)
       System.out.println(test.toString());
