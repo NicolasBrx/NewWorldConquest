@@ -9,6 +9,7 @@ import java.util.TreeMap;
 import map.landType.*;
 import places.*;
 import tools.Coordinates;
+import tools.TextColor;
 import tools.WCException;
 
 /**
@@ -20,6 +21,8 @@ import tools.WCException;
  * @author Nicolas Brax
  */
 public class Map {
+  
+  
   
   /**
    * 
@@ -266,7 +269,16 @@ public class Map {
     toReturn += "\r\n";
     for(int i = 0; i < theMap.length ; ++i){
       for(int j = 0 ; j < theMap[0].length ; ++j){
-        toReturn += "|" + theMap[i][j].getLandType().charAt(0);
+        switch(theMap[i][j].getLandType()){
+          case "Desert": toReturn += TextColor.ANSI_YELLOW_BACKGROUND.getValue();break;
+          case "Hill": toReturn += TextColor.ANSI_PURPLE_BACKGROUND.getValue();break;
+          case "Mountain": toReturn += TextColor.ANSI_RED_BACKGROUND.getValue();break;
+          case "Plain": toReturn += TextColor.ANSI_GREEN_BACKGROUND.getValue();break;
+          case "Sea": toReturn += TextColor.ANSI_BLUE_BACKGROUND.getValue();break;
+          default: break;
+        }
+        toReturn += "|";
+        toReturn += theMap[i][j].getLandType().charAt(0);
         if(theMap[i][j].hasUnit()){
           toReturn += theMap[i][j].getUnits().get(0).getName().charAt(0);
         }
@@ -279,7 +291,7 @@ public class Map {
         else{
           toReturn += " ";
         }
-        toReturn += "|";
+        toReturn += "|" + TextColor.ANSI_RESET.getValue();
       }// for j
       toReturn += "\r\n";
       for(int k = 0 ; k < (int)(theMap.length) ; ++k)
