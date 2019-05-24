@@ -145,4 +145,17 @@ public class Tank extends GroundUnit{
     this.attributes.setMaxVision(this.attributes.getMaxVision() + this.level);
     resetAll();
   }
+  
+  /**
+   * 
+   * @return 
+   */
+  @Override
+  public Coordinates playAI(){
+    // check AI activation?
+    // perception
+    // decision
+    // action
+    return null;
+  }
 }

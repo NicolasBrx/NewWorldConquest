@@ -11,4 +11,19 @@ package engine;
  */
 public class Game {
   // manage a game
+  
+  
+  // everyone starts with one infantry unit placed anywhere on the map
+  
+  // one turn = one player
+  // player after player
+  
+  // capture location empties movement points
+  // combat empties movement points
+  // repair location empties movement points
+  // heal empties movement points
+  
+  // creation of unit takes turn
+  // units created have movement point as soon as they are available
+  // use level to help noobies?
 }

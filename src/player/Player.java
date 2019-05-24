@@ -1,8 +1,9 @@
 package player;
 
 import java.util.ArrayList;
-import places.Place;
+import tools.Coordinates;
 import units.ModernUnit;
+import units.Unit;
 
 /**
  *
@@ -10,11 +11,11 @@ import units.ModernUnit;
  */
 public class Player {
   
-  private int playerId;
-  private String pseudonyme;
-  private int playerTeam;
-  private ArrayList<ModernUnit> unitList;
-  private ArrayList<Place> locationList;
+  protected int playerId;
+  protected String pseudonyme;
+  protected int playerTeam;
+  protected ArrayList<ModernUnit> unitList;
+  protected ArrayList<Coordinates> locationList;
   
   public Player(){
     this.playerId = -1;
@@ -32,7 +33,7 @@ public class Player {
     locationList = new ArrayList<>();
   }
   
-  public void addUnit(ModernUnit unit){
+  public void addUnit(Unit unit){
     
   }
   
@@ -49,7 +50,7 @@ public class Player {
   public ArrayList<ModernUnit> getUnits(){
     return this.unitList;
   }
-  public ArrayList<Place> getLocations(){
+  public ArrayList<Coordinates> getLocations(){
     return this.locationList;
   }
 }

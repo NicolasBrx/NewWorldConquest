@@ -156,4 +156,35 @@ public class CombatPlane extends AirUnit{
              + this.attributes.getVision();
     return toReturn;
   }
+  
+  /**
+   * 
+   * @return 
+   */
+  @Override
+  public Coordinates playAI(){
+    // check AI activation?
+    // perception
+    // decision
+    // action
+    return perception();
+  }
+  
+  private Coordinates perception(){
+    // perception of the surroundings
+    // looks for; allies, ennemies, points of interests
+    return decision();
+  }
+  
+  private Coordinates decision(/*indication of surroundings?*/){
+    // decide what to do according to the surroundings
+    // mix surroundings with self state
+    // decide a couse of action according to these factors + will of things to do
+    return action();
+  }
+  
+  private Coordinates action(/*indication of course of action?*/){
+    // act according to decision
+    return null;
+  }
 }

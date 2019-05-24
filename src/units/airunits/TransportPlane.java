@@ -146,4 +146,17 @@ public class TransportPlane extends AirUnit{
     this.attributes.setMaxVision(this.attributes.getMaxVision() + this.level);
     resetAll();
   }
+  
+  /**
+   * 
+   * @return 
+   */
+  @Override
+  public Coordinates playAI(){
+    // check AI activation?
+    // perception
+    // decision
+    // action
+    return null;
+  }
 }

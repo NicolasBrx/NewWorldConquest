@@ -146,4 +146,17 @@ public class Carrier extends SeaUnit{
     this.attributes.setMaxVision(this.attributes.getMaxVision() + this.level);
     resetAll();
   }
+  
+  /**
+   * 
+   * @return 
+   */
+  @Override
+  public Coordinates playAI(){
+    // check AI activation?
+    // perception
+    // decision
+    // action
+    return null;
+  }
 }
