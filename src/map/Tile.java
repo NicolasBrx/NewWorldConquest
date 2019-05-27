@@ -5,7 +5,6 @@ package map;
 import java.util.ArrayList;
 import java.util.HashMap;
 import places.Place;
-import tools.Coordinates;
 import tools.WCException;
 import tools.XmlTool;
 import units.Unit;
@@ -20,6 +19,8 @@ public abstract class Tile implements TileInterface {
   private int movementModifier;
   private Place specialPlace;
   private ArrayList<Unit> units;
+  
+  private boolean observed;
   
   public Tile(){
     specialPlace = null;
@@ -58,6 +59,7 @@ public abstract class Tile implements TileInterface {
   
   @Override
   public boolean hasUnit(){
+    //System.out.println(units.size() + " == " + this.units.isEmpty());
     return !this.units.isEmpty();
   }
   
@@ -70,4 +72,30 @@ public abstract class Tile implements TileInterface {
   public ArrayList<Unit> getUnits(){
     return this.units;
   }
+
+  public int getVisionModifier(){
+    return visionModifier;
+  }
+
+  public void setVisionModifier(int visionModifier){
+    this.visionModifier = visionModifier;
+  }
+
+  public int getMovementModifier(){
+    return movementModifier;
+  }
+
+  public void setMovementModifier(int movementModifier){
+    this.movementModifier = movementModifier;
+  }
+
+  public boolean isObserved(){
+    return observed;
+  }
+
+  public void setObserved(boolean observed){
+    this.observed = observed;
+  }
+  
+  
 }

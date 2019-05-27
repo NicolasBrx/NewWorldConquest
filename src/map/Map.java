@@ -2,7 +2,10 @@ package map;
 
 //TODO: add proper javadoc.
 
+import static java.lang.Integer.max;
+import static java.lang.Integer.min;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.NavigableMap;
 import java.util.Random;
 import java.util.TreeMap;
@@ -257,6 +260,42 @@ public class Map {
     return found;
   } // end oneOfNeighboursIs
   
+  public HashMap<String,ArrayList<Coordinates>> lookInRange(int range, int x, int y){
+    HashMap<String,ArrayList<Coordinates>> toReturn = new HashMap<>();
+    ArrayList<Coordinates> enemies = new ArrayList<>();
+    ArrayList<Coordinates> allies = new ArrayList<>();
+    ArrayList<Coordinates> locations = new ArrayList<>();
+    
+    int row_limit = theMap.length - 1;
+    if(row_limit > 0){
+      int column_limit = theMap[0].length - 1;
+      for(int i = max(0, x-range); i <= min(x+range, row_limit); i++){
+        for(int j = max(0, y-range); j <= min(y+range, column_limit); j++){
+          if(i != x || j != y){ // useless a I see where I am as well but... skip one iteration
+            //theMap[x][y]; ==> in range
+            theMap[i][j].setObserved(true);
+            if(theMap[i][j].getSpecialPlace() != null){
+              locations.add(new Coordinates(i,j));
+            }
+            if(theMap[i][j].hasUnit()){
+              if(theMap[i][j].getUnits().get(0).getTeam() == theMap[x][y].getUnits().get(0).getTeam()){
+                allies.add(new Coordinates(i,j));
+              }
+              else{
+                enemies.add(new Coordinates(i,j));
+              }
+            }
+          }
+        }
+      }
+    }
+    toReturn.put("allies", allies);
+    toReturn.put("enemies", enemies);
+    toReturn.put("locations", locations);
+    return toReturn;
+  } // end lookInRange
+  
+  
   public geometricForm getGeometricForm(){
     return this.tileForms;
   }
@@ -269,6 +308,9 @@ public class Map {
     toReturn += "\r\n";
     for(int i = 0; i < theMap.length ; ++i){
       for(int j = 0 ; j < theMap[0].length ; ++j){
+        if(theMap[i][j].isObserved()){
+          toReturn += TextColor.ANSI_BLACK_BACKGROUND.getValue();
+        }else{
         switch(theMap[i][j].getLandType()){
           case "Desert": toReturn += TextColor.ANSI_YELLOW_BACKGROUND.getValue();break;
           case "Hill": toReturn += TextColor.ANSI_PURPLE_BACKGROUND.getValue();break;
@@ -276,7 +318,7 @@ public class Map {
           case "Plain": toReturn += TextColor.ANSI_GREEN_BACKGROUND.getValue();break;
           case "Sea": toReturn += TextColor.ANSI_BLUE_BACKGROUND.getValue();break;
           default: break;
-        }
+        }}
         toReturn += "|";
         toReturn += theMap[i][j].getLandType().charAt(0);
         if(theMap[i][j].hasUnit()){

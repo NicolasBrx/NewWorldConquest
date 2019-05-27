@@ -1,5 +1,6 @@
 package units.airunits;
 
+import map.Map;
 import tools.Coordinates;
 import units.ModernUnit;
 
@@ -45,7 +46,7 @@ public abstract class AirUnit extends ModernUnit{
    * The Unit is built with no base camp.
    */
   public AirUnit(){
-    super(0,new Coordinates(0,0));
+    super(0,new Coordinates(0,0),null);
     this.airfieldId = null;
   }
   
@@ -55,8 +56,8 @@ public abstract class AirUnit extends ModernUnit{
    * @param coord the coordinates where the unit is created
    * @param camp the identificator of the base camp of the unit.
    */
-  public AirUnit(int team, Coordinates coord, String camp){
-    super(0,coord);
+  public AirUnit(int team, Coordinates coord, String camp, Map gameMap){
+    super(team,coord,gameMap);
     this.airfieldId = camp;
   }
 

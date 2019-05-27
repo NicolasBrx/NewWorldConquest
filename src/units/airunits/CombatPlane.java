@@ -1,5 +1,8 @@
 package units.airunits;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import map.Map;
 import tools.Coordinates;
 import tools.WCException;
 
@@ -44,7 +47,7 @@ public class CombatPlane extends AirUnit{
    * The Unit is built with the standart name and scores but negative experience
    */
   public CombatPlane() throws WCException{
-    super(0,new Coordinates(0,0),null);
+    super(0,new Coordinates(0,0),null,null);
     createUnit(this.GENERIC_NAME);
     this.name = this.GENERIC_NAME;
   }
@@ -57,8 +60,8 @@ public class CombatPlane extends AirUnit{
    * @param y    the Y coordinate on which the unit is created.
    * @param camp the identificator of the base camp of the unit.
    */
-  public CombatPlane(int team,int nb, int x, int y, String camp) throws WCException{
-    super(team,new Coordinates(x,y),camp);
+  public CombatPlane(int team,int nb, int x, int y, String camp, Map gameMap) throws WCException{
+    super(team,new Coordinates(x,y),camp, gameMap);
     createUnit(this.GENERIC_NAME);
     this.name = this.GENERIC_NAME + " " + (nb < 10 ? "0" : "") + nb;
   }
@@ -151,9 +154,12 @@ public class CombatPlane extends AirUnit{
   public String toString(){
     String toReturn;
     toReturn = "Combat Plane: " + this.attributes.getAttack() + " - "
+             + this.coordinates.X + " - "
+             + this.coordinates.Y + " - "
              + this.attributes.getDefense() + " - "
              + this.attributes.getMovement() + " - "
-             + this.attributes.getVision();
+             + this.attributes.getVision() + " - "
+             + this.team;
     return toReturn;
   }
   
@@ -170,21 +176,55 @@ public class CombatPlane extends AirUnit{
     return perception();
   }
   
-  private Coordinates perception(){
-    // perception of the surroundings
-    // looks for; allies, ennemies, points of interests
-    return decision();
-  }
   
-  private Coordinates decision(/*indication of surroundings?*/){
-    // decide what to do according to the surroundings
+  
+  /**
+   * 
+   * // decide what to do according to the surroundings
     // mix surroundings with self state
     // decide a couse of action according to these factors + will of things to do
-    return action();
+    
+    // count the allies, ennemies and locations in view
+    // count the ones that are possible to reach (ennemies and locations)
+    // see if allies can help or finish the job if I loose
+    // more allies than ennemies ? am I alone ?
+    
+    // decide to take down an ennemy or take over a location
+    // priority on location
+    // table of priority of the ennemy in sight against me
+   * 
+   * @param seen
+   * @return 
+   */
+  @Override
+  protected Coordinates decision(HashMap<String,ArrayList<Coordinates>> seen){
+    Coordinates objective = new Coordinates(-1,-1,-1);
+    System.out.println("I see " + seen.get("locations").size() + " special place and "
+                      + seen.get("enemies").size() + " enemies and " 
+                      + seen.get("allies").size() + " allies.");
+    
+    // check number of enemies
+    // check number of allies
+    // sort locations by interest and distance
+    
+    // enemy at the most interesting locations?
+    
+    // decide:
+    //  - compute attack score according to enemy and ally number
+    //  - location score according to distance and enemy presence
+    //  - combine... and decide !
+    
+    return action(objective);
   }
   
-  private Coordinates action(/*indication of course of action?*/){
-    // act according to decision
+  /**
+   * 
+   * @param objective
+   * @return 
+   */
+  @Override
+  protected Coordinates action(Coordinates objective){
+    // go to coordinates and attack or defend according to what's there, if there is
     return null;
   }
 }

@@ -44,7 +44,7 @@ public class ScoutPlane extends AirUnit{
    * The Unit is built with the standart name and scores but negative experience
    */
   public ScoutPlane() throws WCException{
-    super(0,new Coordinates(0,0),null);
+    super(0,new Coordinates(0,0),null,null);
     createUnit(this.GENERIC_NAME);
     this.name = this.GENERIC_NAME;
   }
@@ -58,7 +58,7 @@ public class ScoutPlane extends AirUnit{
    * @param camp the identificator of the base camp of the unit.
    */
   public ScoutPlane(int team,int nb, int x, int y, String camp) throws WCException{
-    super(team,new Coordinates(x,y),camp);
+    super(team,new Coordinates(x,y),camp,null);
     createUnit(this.GENERIC_NAME);
     this.name = this.GENERIC_NAME + " " + (nb < 10 ? "0" : "") + nb;
   }

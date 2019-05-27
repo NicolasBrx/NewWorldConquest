@@ -45,7 +45,7 @@ public abstract class SeaUnit extends ModernUnit{
    * The Unit is built with no base camp.
    */
   public SeaUnit(){
-    super(0,new Coordinates(0,0));
+    super(0,new Coordinates(0,0),null);
     this.harbourId = null;
   }
   
@@ -56,7 +56,7 @@ public abstract class SeaUnit extends ModernUnit{
    * @param camp the identificator of the base camp of the unit.
    */
   public SeaUnit(int team, Coordinates coord, String harbour){
-    super(0,coord);
+    super(0,coord,null);
     this.harbourId = harbour;
   }
 

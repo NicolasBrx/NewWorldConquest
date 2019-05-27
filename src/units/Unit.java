@@ -1,5 +1,9 @@
 package units;
 
+import engine.Strategy;
+import java.util.ArrayList;
+import java.util.HashMap;
+import map.Map;
 import tools.Coordinates;
 
 /**
@@ -48,12 +52,20 @@ public abstract class Unit implements UnitInterface {
    */
   protected UnitAttributes attributes;
   
+  /**
+   * 
+   */
+  protected Map myMap;
+  
   public Unit(){
     
   }
   
-  public Unit(String id, int team, Coordinates coord){
+  public Unit(String id, int team, Coordinates coord, Map gameMap){
+    this.team = team;
     this.level=0;
+    coordinates = coord;
+    this.myMap = gameMap;
   }
   
   /****************************************************************************/
@@ -199,10 +211,37 @@ public abstract class Unit implements UnitInterface {
   
   /**
    * 
+   */
+  protected Strategy strategyType;
+  
+  /**
+   * 
+   * @return 
+   */
+  protected Coordinates perception(){
+    
+    // perception of the surroundings
+    // looks for; allies, ennemies, points of interests
+    System.out.println("I have a vision range of: " + getVisionScore() + " and is in " + getCoordinates().X + ";" + getCoordinates().Y);
+    HashMap<String,ArrayList<Coordinates>> seen = this.myMap.lookInRange(this.getVisionScore(), coordinates.X, coordinates.Y);
+    return decision(seen);
+  }
+  
+  /**
+   * 
    * @param activation 
    */
   public void activateAI(boolean activation){
     this.activatedAI = activation;
+  }
+  
+  public void setStratefy(Strategy strategy){
+    this.strategyType = strategy;
+  }
+  
+  protected HashMap<String,ArrayList<Coordinates>> checkSurroundings(int range){
+    
+    return myMap.lookInRange(range,coordinates.X,coordinates.Y);
   }
   
   /**
@@ -210,5 +249,19 @@ public abstract class Unit implements UnitInterface {
    * @return 
    */
   public abstract Coordinates playAI();
+  
+  /**
+   * 
+   * @param seen
+   * @return 
+   */
+  protected abstract Coordinates decision(HashMap<String,ArrayList<Coordinates>> seen);
+  
+  /**
+   * 
+   * @param objective
+   * @return 
+   */
+  protected abstract Coordinates action(Coordinates objective);
   
 }

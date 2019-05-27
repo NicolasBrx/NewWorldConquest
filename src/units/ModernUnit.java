@@ -1,6 +1,7 @@
 package units;
 
 import java.util.ArrayList;
+import map.Map;
 import tools.Coordinates;
 import tools.WCException;
 import tools.XmlTool;
@@ -34,8 +35,8 @@ public abstract class ModernUnit extends Unit{
    * @param team the team number of the player creating the unit.
    * @param coord the coordinates where to build the team.
    */
-  public ModernUnit(int team, Coordinates coord){
-    super("",team,new Coordinates(coord.X, coord.Y, coord.Z));
+  public ModernUnit(int team, Coordinates coord, Map gameMap){
+    super("",team,coord, gameMap);
   }
   
   /**

@@ -34,7 +34,7 @@ public abstract class GroundUnit extends ModernUnit{
    * The Unit is built with no base camp.
    */
   public GroundUnit(){
-    super(0,new Coordinates(0,0));
+    super(0,new Coordinates(0,0),null);
     
   }
   
@@ -44,7 +44,7 @@ public abstract class GroundUnit extends ModernUnit{
    * @param coord the coordinates where the unit is created
    */
   public GroundUnit(int team, Coordinates coord){
-    super(0,coord);
+    super(0,coord,null);
    
   }
 
