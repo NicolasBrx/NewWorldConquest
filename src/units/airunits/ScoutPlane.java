@@ -1,5 +1,7 @@
 package units.airunits;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import tools.Coordinates;
 import tools.WCException;
 
@@ -157,6 +159,21 @@ public class ScoutPlane extends AirUnit{
     // perception
     // decision
     // action
+    return null;
+  }
+  
+  @Override
+  protected Coordinates decision(HashMap<String,ArrayList<Coordinates>> seen){
+    Coordinates objective = new Coordinates(-1,-1,-1);
+    System.out.println("I see " + seen.get("locations").size() + " special place and "
+                      + seen.get("enemies").size() + " enemies and " 
+                      + seen.get("allies").size() + " allies.");
+    return action(objective);
+  }
+  
+  @Override
+  protected Coordinates action(Coordinates objective){
+    // go to coordinates and attack or defend according to what's there, if there is
     return null;
   }
 }
