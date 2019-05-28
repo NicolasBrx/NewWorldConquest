@@ -203,9 +203,9 @@ public class CombatPlane extends AirUnit{
                       + seen.get("enemies").size() + " enemies and " 
                       + seen.get("allies").size() + " allies.");
     
-    // check number of enemies
-    // check number of allies
-    // sort locations by interest and distance
+    // sort enemies by distance and allies around and my abilities
+    // sort allies by distance and enemies around and my abilitie
+    // sort locations by interest and distance and my abilities
     
     // enemy at the most interesting locations?
     

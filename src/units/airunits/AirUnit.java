@@ -10,6 +10,12 @@ import units.ModernUnit;
  * 
  * It herits from ModernUnit, the high level class for every unit in the game.
  * 
+ * Air units have the special ability to be able to move after a combat. On the 
+ * other hand, they can not capture a city and they have to  manage their fuel
+ * level before they crash.
+ * 
+ * Air unit are not subject to the land type movement modifier.
+ * 
  * @author Nicolas Brax
  */
 public abstract class AirUnit extends ModernUnit{

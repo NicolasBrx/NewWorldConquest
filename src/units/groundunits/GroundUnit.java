@@ -10,6 +10,10 @@ import units.ModernUnit;
  * It herits from ModernUnit, the high level class for every unit in the modern 
  * game.
  * 
+ * Ground units have the unique ability to capture of place of interest and
+ * occupy it to defend it. They have no drawbacks except their limited 
+ * movement rates.
+ * 
  * @author Nicolas Brax
  */
 public abstract class GroundUnit extends ModernUnit{

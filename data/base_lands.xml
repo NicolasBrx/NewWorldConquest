@@ -1,26 +1,26 @@
 <lands>
   <land name="Desert">
     <modifiers>
-      <modifier skill="movement">2</modifier>
-      <modifier skill="vision">5</modifier>
+      <modifier skill="movement">-2</modifier>
+      <modifier skill="vision">+2</modifier>
     </modifiers>
   </land>
   <land name="Hill">
     <modifiers>
-      <modifier skill="movement">2</modifier>
-      <modifier skill="vision">5</modifier>
+      <modifier skill="movement">-2</modifier>
+      <modifier skill="vision">-2</modifier>
     </modifiers>
   </land>
   <land name="Mountain">
     <modifiers>
-      <modifier skill="movement">2</modifier>
+      <modifier skill="movement">-5</modifier>
       <modifier skill="vision">5</modifier>
     </modifiers>
   </land>
   <land name="Plain">
     <modifiers>
       <modifier skill="movement">2</modifier>
-      <modifier skill="vision">5</modifier>
+      <modifier skill="vision">2</modifier>
     </modifiers>
   </land>
   <land name="Sea">

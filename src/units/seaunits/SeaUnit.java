@@ -9,6 +9,12 @@ import units.ModernUnit;
  * 
  * It herits from ModernUnit, the high level class for every unit in the game.
  * 
+ * Sea units are the only one that can move in sea tiles. Their unique ability
+ * is to be able to shoot from ashore and at certain range, allowing
+ * supporting fire.
+ * 
+ * Of course, aicraft can move over tile too.
+ * 
  * @author Nicolas Brax
  */
 public abstract class SeaUnit extends ModernUnit{

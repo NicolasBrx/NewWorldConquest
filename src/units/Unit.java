@@ -222,8 +222,9 @@ public abstract class Unit implements UnitInterface {
     
     // perception of the surroundings
     // looks for; allies, ennemies, points of interests
-    System.out.println("I have a vision range of: " + getVisionScore() + " and is in " + getCoordinates().X + ";" + getCoordinates().Y);
-    HashMap<String,ArrayList<Coordinates>> seen = this.myMap.lookInRange(this.getVisionScore(), coordinates.X, coordinates.Y);
+    int visionRange = getVisionScore() + this.myMap.getTile(this.coordinates.X,this.coordinates.Y).getVisionModifier();
+    System.out.println("I have a vision range of: " + visionRange + " and is in " + getCoordinates().X + ";" + getCoordinates().Y);
+    HashMap<String,ArrayList<Coordinates>> seen = this.myMap.lookInRange(visionRange, coordinates.X, coordinates.Y);
     return decision(seen);
   }
   

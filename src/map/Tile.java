@@ -30,8 +30,8 @@ public abstract class Tile implements TileInterface {
   
   public void createLandType(String landType) throws WCException{
     XmlTool xml = new XmlTool();
-    this.visionModifier = xml.loadLand(landType).get(0);
-    this.movementModifier = xml.loadLand(landType).get(1);
+    this.visionModifier = xml.loadLand(landType).get(1);
+    this.movementModifier = xml.loadLand(landType).get(0);
   }
   
   @Override
