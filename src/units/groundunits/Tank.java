@@ -46,7 +46,7 @@ public class Tank extends GroundUnit{
    * The Unit is built with the standart name and scores but negative experience
    */
   public Tank() throws WCException{
-    super(0,new Coordinates(0,0));
+    super(0,new Coordinates(0,0),null);
     createUnit(this.GENERIC_NAME);
     this.name = this.GENERIC_NAME;
   }
@@ -59,7 +59,7 @@ public class Tank extends GroundUnit{
    * @param y    the Y coordinate on which the unit is created.
    */
   public Tank(int team,int nb, int x, int y) throws WCException{
-    super(team,new Coordinates(x,y));
+    super(team,new Coordinates(x,y),null);
     createUnit(this.GENERIC_NAME);
     this.name = this.GENERIC_NAME + " " + (nb < 10 ? "0" : "") + nb;
   }

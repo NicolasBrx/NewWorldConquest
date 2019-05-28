@@ -16,6 +16,7 @@ public class Player {
   protected int playerTeam;
   protected ArrayList<ModernUnit> unitList;
   protected ArrayList<Coordinates> locationList;
+  protected boolean isAI;
   
   public Player(){
     this.playerId = -1;
@@ -23,6 +24,7 @@ public class Player {
     this.playerTeam = -1;
     this.unitList = new ArrayList<>();
     this.locationList = new ArrayList<>();
+    this.isAI = false;
   }
   
   public Player(int playerId, String pseudo, int team){
@@ -31,6 +33,7 @@ public class Player {
     this.playerTeam = team;
     unitList = new ArrayList<>();
     locationList = new ArrayList<>();
+    this.isAI = false;
   }
   
   public void addUnit(Unit unit){
@@ -53,4 +56,29 @@ public class Player {
   public ArrayList<Coordinates> getLocations(){
     return this.locationList;
   }
+
+  public ArrayList<ModernUnit> getUnitList(){
+    return unitList;
+  }
+
+  public void setUnitList(ArrayList<ModernUnit> unitList){
+    this.unitList = unitList;
+  }
+
+  public ArrayList<Coordinates> getLocationList(){
+    return locationList;
+  }
+
+  public void setLocationList(ArrayList<Coordinates> locationList){
+    this.locationList = locationList;
+  }
+
+  public boolean isIsAI(){
+    return isAI;
+  }
+
+  public void setIsAI(boolean isAI){
+    this.isAI = isAI;
+  }
+  
 }

@@ -1,5 +1,6 @@
 package units.groundunits;
 
+import map.Map;
 import tools.Coordinates;
 import units.ModernUnit;
 
@@ -46,9 +47,10 @@ public abstract class GroundUnit extends ModernUnit{
    * Build a new Ground Unit.
    * @param team the player team to which the unit belong.
    * @param coord the coordinates where the unit is created
+   * @param gameMap
    */
-  public GroundUnit(int team, Coordinates coord){
-    super(0,coord,null);
+  public GroundUnit(int team, Coordinates coord, Map gameMap){
+    super(0,coord,gameMap);
    
   }
 

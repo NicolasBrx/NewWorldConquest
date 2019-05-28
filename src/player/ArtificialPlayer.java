@@ -18,6 +18,7 @@ public class ArtificialPlayer extends Player{
   // all its unit have an intelligence engine of their own... mouhahahaha !
   public ArtificialPlayer(){
     super();
+    setIsAI(true);
   }
   
   public ArtificialPlayer(int playerId, String pseudo, int team){

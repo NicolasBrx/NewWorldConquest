@@ -59,6 +59,8 @@ public class CombatPlane extends AirUnit{
    * @param x    the X coordinate on which the unit is created.
    * @param y    the Y coordinate on which the unit is created.
    * @param camp the identificator of the base camp of the unit.
+   * @param gameMap
+   * @throws tools.WCException
    */
   public CombatPlane(int team,int nb, int x, int y, String camp, Map gameMap) throws WCException{
     super(team,new Coordinates(x,y),camp, gameMap);
