@@ -7,8 +7,6 @@ import player.ArtificialPlayer;
 import player.Player;
 import tools.Coordinates;
 import tools.WCException;
-import units.Unit;
-import units.airunits.CombatPlane;
 import units.groundunits.Infantry;
 
 /**
@@ -21,13 +19,15 @@ public class WorldConquest {
   private static ArrayList<Player> players;
   
   public static void main(String[] args) {
+    players = new ArrayList<>();
     test();
     decideStartingLocation();
   }
   
   public static void createPlayers(int nbPlayers, int nbIA){
+    Random rand = new Random();
     for(int i = 0 ; i < nbIA ; ++i){
-      players.add(new ArtificialPlayer(i,"AI"+i+1,i+1));
+      players.add(new ArtificialPlayer(i+1,"AI"+i+1,(rand.nextInt(2) == 0 ? 1:2)));
     }
     
     for(int i = 0 ; i < (nbPlayers - nbIA) ; ++i){
@@ -50,20 +50,32 @@ public class WorldConquest {
       do{
         nx = rand.nextInt(tx - 1);
         ny = rand.nextInt(ty - 1);
-      }while(gameMap.lookInRange(10, nx, ny).get("enemies").isEmpty());
+      }while(!checkDistance(nx,ny,toReturn, tx));
       toReturn.add(new Coordinates(nx,ny));
+    }
+    return toReturn;
+  }
+  
+  // toReturn.stream().allMatch(c -> (Math.abs(c.X - nx) > (tx / 2) && Math.abs(c.Y - nY) > (ty / 2)))
+  private static boolean checkDistance(int x, int y, ArrayList<Coordinates> check, int size){
+    boolean toReturn = true;
+    if(!check.isEmpty()){
+      int i = 0;
+      do{
+        toReturn = (Math.abs(x - check.get(i).X) > (size / 10)) && (Math.abs(y - check.get(i).Y) > (size / 10));
+        ++i;
+      }while(toReturn && i < check.size());
     }
     return toReturn;
   }
   
   public static void test(){
     
-    Random rand = new Random();
     try{
-    
-      createPlayers(2,2);
-      int tailleX = 10;
-      int tailleY = 10;
+      int nbPlayers = 3;
+      createPlayers(nbPlayers,nbPlayers);
+      int tailleX = nbPlayers * 10;
+      int tailleY = nbPlayers * 10;
       createMap("test_world",tailleX, tailleY);
       ArrayList<Coordinates> startingPoints = decideStartingLocation();
       for(int i = 0 ; i < startingPoints.size() ; ++i){
@@ -76,7 +88,10 @@ public class WorldConquest {
       }
       
       
-      players.get(0).getUnits().get(0).playAI();
+      for(Player player : players){
+        player.getUnits().get(0).playAI();
+      }
+      //System.out.println(gameMap.toString());
       //System.out.println(test_cp.toString()); 
      
       /*
@@ -92,7 +107,6 @@ public class WorldConquest {
       */
       
       // test map display (string style)
-      System.out.println(gameMap.toString());
     }
     catch(WCException e){
       // TODO: find a solution...

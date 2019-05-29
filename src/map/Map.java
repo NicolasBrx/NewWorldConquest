@@ -192,37 +192,50 @@ public class Map {
     //TODO: modify to generate proper name (count already added places)
     //TODO: use xml to load right classes => no hard code for name classes...
     
+    int nbairport = 0;
+    int nbharbour = 0;
+    int nbcity = 0;
+    int nbmilitarycamp = 0;
+    int nboasis = 0;
+    int nboil = 0;
     for(int i = 0; i < theMap.length ; ++i){
       for(int j = 0 ; j < theMap[0].length ; ++j){
     
         if(!theMap[i][j].getLandType().equalsIgnoreCase("Sea")){
           RandomCollection rc = new RandomCollection()
-                                .add(50,"None")
+                                .add(80,"None")
                                 .add(2,"Airport").add(2,"City").add(2, "Military Camp");
         
           if(theMap[i][j].getLandType().equalsIgnoreCase("Desert")){
-            rc.add(20,"Oasis").add(10,"Oil Derrick");
+            rc.add(5,"Oasis").add(5,"Oil Derrick");
           }
           else if(oneOfNeighboursIs(i,j,"Sea")){
-            rc.add(30,"Harbour");
+            rc.add(5,"Harbour");
           }
           else{
             rc.add(2,"Oasis").add(2,"Oil Derrick");
           }
         
          switch(rc.next()){
-            case "Airport":       theMap[i][j].addSpecialPlace(new Airport(1));      break;
-            case "City":          theMap[i][j].addSpecialPlace(new City(1));         break;
-            case "Military Camp": theMap[i][j].addSpecialPlace(new MilitaryCamp(1)); break;
-            case "Oasis":         theMap[i][j].addSpecialPlace(new Oasis(1));        break;
-            case "Oil Derrick":   theMap[i][j].addSpecialPlace(new OilDerrick(1));   break;
-            case "Harbour":       theMap[i][j].addSpecialPlace(new Harbour(1));      break;
+            case "Airport":       theMap[i][j].addSpecialPlace(new Airport(1));      nbairport++;      break;
+            case "City":          theMap[i][j].addSpecialPlace(new City(1));         nbcity++;         break;
+            case "Military Camp": theMap[i][j].addSpecialPlace(new MilitaryCamp(1)); nbmilitarycamp++; break;
+            case "Oasis":         theMap[i][j].addSpecialPlace(new Oasis(1));        nboasis++;        break;
+            case "Oil Derrick":   theMap[i][j].addSpecialPlace(new OilDerrick(1));   nboil++;          break;
+            case "Harbour":       theMap[i][j].addSpecialPlace(new Harbour(1));      nbharbour++;      break;
             case "None":          break; // We don't add any special places to this location.break;
             default:throw new WCException("Error on randomization for a special place. [generateSpecialPlaces()]");
           }//switch rc.next()
         }//if !Sea
       }//for j
     }// for i
+    System.out.println("Generated: " + nbharbour + " harbour(s) -- " + nbcity + " city(ies) -- " + nbmilitarycamp +
+                       " military camp(s) -- " + nboasis + " oasis -- " + nbairport + " airport(s) -- " + nboil +
+                       " oil derrick(s) -- Total: " + 
+                      (nbharbour+nbcity+nbmilitarycamp+nboasis+nbairport+nboil) + " tiles, so " +
+                      (((nbharbour+nbcity+nbmilitarycamp+nboasis+nbairport+nboil)*100)/(theMap.length*theMap[0].length)) 
+                      + "% of " + (theMap.length*theMap[0].length) + " tiles."
+                      );
   } // end generateSpecialPlaces 
   
   /**
@@ -308,9 +321,9 @@ public class Map {
     toReturn += "\r\n";
     for(int i = 0; i < theMap.length ; ++i){
       for(int j = 0 ; j < theMap[0].length ; ++j){
-        if(theMap[i][j].isObserved()){
-          toReturn += TextColor.ANSI_BLACK_BACKGROUND.getValue();
-        }else{
+        if(theMap[i][j].isObserved())//{
+          toReturn += TextColor.ANSI_CYAN.getValue();
+        //}else{
         switch(theMap[i][j].getLandType()){
           case "Desert": toReturn += TextColor.ANSI_YELLOW_BACKGROUND.getValue();break;
           case "Hill": toReturn += TextColor.ANSI_PURPLE_BACKGROUND.getValue();break;
@@ -318,7 +331,7 @@ public class Map {
           case "Plain": toReturn += TextColor.ANSI_GREEN_BACKGROUND.getValue();break;
           case "Sea": toReturn += TextColor.ANSI_BLUE_BACKGROUND.getValue();break;
           default: break;
-        }}
+        }//}
         toReturn += "|";
         toReturn += theMap[i][j].getLandType().charAt(0);
         if(theMap[i][j].hasUnit()){

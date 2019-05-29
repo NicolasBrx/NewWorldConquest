@@ -50,7 +50,7 @@ public abstract class GroundUnit extends ModernUnit{
    * @param gameMap
    */
   public GroundUnit(int team, Coordinates coord, Map gameMap){
-    super(0,coord,gameMap);
+    super(team,coord,gameMap);
    
   }
 

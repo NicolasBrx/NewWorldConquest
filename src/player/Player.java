@@ -14,7 +14,7 @@ public class Player {
   protected int playerId;
   protected String pseudonyme;
   protected int playerTeam;
-  protected ArrayList<ModernUnit> unitList;
+  protected ArrayList<Unit> unitList;
   protected ArrayList<Coordinates> locationList;
   protected boolean isAI;
   
@@ -37,7 +37,7 @@ public class Player {
   }
   
   public void addUnit(Unit unit){
-    
+    unitList.add(unit);
   }
   
   public int getPlayerId(){
@@ -50,18 +50,18 @@ public class Player {
     return this.playerTeam;
   }
   
-  public ArrayList<ModernUnit> getUnits(){
+  public ArrayList<Unit> getUnits(){
     return this.unitList;
   }
   public ArrayList<Coordinates> getLocations(){
     return this.locationList;
   }
 
-  public ArrayList<ModernUnit> getUnitList(){
+  public ArrayList<Unit> getUnitList(){
     return unitList;
   }
 
-  public void setUnitList(ArrayList<ModernUnit> unitList){
+  public void setUnitList(ArrayList<Unit> unitList){
     this.unitList = unitList;
   }
 

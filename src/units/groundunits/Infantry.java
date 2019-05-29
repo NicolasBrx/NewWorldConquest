@@ -151,6 +151,20 @@ public class Infantry extends GroundUnit{
     resetAll();
   }
   
+  @Override
+  public String toString(){
+    String toReturn;
+    toReturn = "Infantry: " 
+             + this.coordinates.X + " - "
+             + this.coordinates.Y + " - "
+             + this.attributes.getAttack() + " - "
+             + this.attributes.getDefense() + " - "
+             + this.attributes.getMovement() + " - "
+             + this.attributes.getVision() + " - "
+             + this.team;
+    return toReturn;
+  }
+  
   /**
    * 
    * @return 
@@ -161,7 +175,7 @@ public class Infantry extends GroundUnit{
     // perception
     // decision
     // action
-    return null;
+    return perception();
   }
   
   
