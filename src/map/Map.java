@@ -2,6 +2,12 @@ package map;
 
 //TODO: add proper javadoc.
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import static java.lang.Integer.max;
 import static java.lang.Integer.min;
 import java.util.ArrayList;
@@ -48,7 +54,7 @@ public class Map {
   /**
    * 
    */
-  private final geometricForm tileForms;
+  private geometricForm tileForms;
   
   /**
    * always a square
@@ -64,7 +70,7 @@ public class Map {
     this.ymax = this.YMAX;
     this.theMap = new Tile[this.xmax][this.ymax];
     this.tileForms = geometricForm.PAVEMENT;
-    mapGeneration();
+    // mapGeneration();
   }
   
   /**
@@ -106,11 +112,11 @@ public class Map {
     Random rand = new Random();
     int n = rand.nextInt(5);
     switch(n){
-      case 0: theMap[startingX][startingY] = new Desert();  break;
-      case 1: theMap[startingX][startingY] = new Hill();    break;
-      case 2: theMap[startingX][startingY] = new Mountain();break;
-      case 3: theMap[startingX][startingY] = new Plain();   break;
-      case 4: theMap[startingX][startingY] = new Sea();     break;
+      case 0: theMap[startingX][startingY] = new Desert();   break;
+      case 1: theMap[startingX][startingY] = new Hill();     break;
+      case 2: theMap[startingX][startingY] = new Mountain(); break;
+      case 3: theMap[startingX][startingY] = new Plain();    break;
+      case 4: theMap[startingX][startingY] = new Sea();      break;
       default: throw new WCException("Error on randomization for a land type. [generateLands()]");
     }//switch
     int processed = 1 ;
@@ -130,7 +136,7 @@ public class Map {
     toProcess.add(new Coordinates(startingX,startingY));
     while(processed < this.xmax * this.ymax){
       ArrayList<Coordinates> newToProcess = new ArrayList<>();
-      ArrayList<Coordinates> neighboursToProcess = new ArrayList<>();
+      ArrayList<Coordinates> neighboursToProcess = new ArrayList  <>();
       for(int i = 0 ; i < toProcess.size() ; ++i){
         neighboursToProcess = getNeighbours(toProcess.get(i).X,toProcess.get(i).Y);
         for(Coordinates neighbourCoordinate : neighboursToProcess){
@@ -217,12 +223,12 @@ public class Map {
           }
         
          switch(rc.next()){
-            case "Airport":       theMap[i][j].addSpecialPlace(new Airport(1));      nbairport++;      break;
-            case "City":          theMap[i][j].addSpecialPlace(new City(1));         nbcity++;         break;
-            case "Military Camp": theMap[i][j].addSpecialPlace(new MilitaryCamp(1)); nbmilitarycamp++; break;
-            case "Oasis":         theMap[i][j].addSpecialPlace(new Oasis(1));        nboasis++;        break;
-            case "Oil Derrick":   theMap[i][j].addSpecialPlace(new OilDerrick(1));   nboil++;          break;
-            case "Harbour":       theMap[i][j].addSpecialPlace(new Harbour(1));      nbharbour++;      break;
+            case "Airport":       theMap[i][j].addSpecialPlace(new Airport(nbairport));           nbairport++;      break;
+            case "City":          theMap[i][j].addSpecialPlace(new City(nbcity));                 nbcity++;         break;
+            case "Military Camp": theMap[i][j].addSpecialPlace(new MilitaryCamp(nbmilitarycamp)); nbmilitarycamp++; break;
+            case "Oasis":         theMap[i][j].addSpecialPlace(new Oasis(nboasis));               nboasis++;        break;
+            case "Oil Derrick":   theMap[i][j].addSpecialPlace(new OilDerrick(nboil));            nboil++;          break;
+            case "Harbour":       theMap[i][j].addSpecialPlace(new Harbour(nbharbour));           nbharbour++;      break;
             case "None":          break; // We don't add any special places to this location.break;
             default:throw new WCException("Error on randomization for a special place. [generateSpecialPlaces()]");
           }//switch rc.next()
@@ -273,7 +279,15 @@ public class Map {
     return found;
   } // end oneOfNeighboursIs
   
+  /**
+   * 
+   * @param range
+   * @param x
+   * @param y
+   * @return 
+   */
   public HashMap<String,ArrayList<Coordinates>> lookInRange(int range, int x, int y){
+    // WARNING: this method only works with pavement tiles, not with hexagonal tiles
     HashMap<String,ArrayList<Coordinates>> toReturn = new HashMap<>();
     ArrayList<Coordinates> enemies = new ArrayList<>();
     ArrayList<Coordinates> allies = new ArrayList<>();
@@ -308,9 +322,109 @@ public class Map {
     return toReturn;
   } // end lookInRange
   
-  
+
+  /**
+   * 
+   * @return 
+   */  
   public geometricForm getGeometricForm(){
     return this.tileForms;
+  }
+  
+  
+  /**
+   * Save and load the map into and from the file given in parameter
+   * the map : coord min and max, tiles with landtype and special places
+   * Note that this does NOT save the units.
+   */
+  public void saveMap(String filename){
+    try (
+      Writer writer = new BufferedWriter(new OutputStreamWriter(
+      new FileOutputStream(System.getProperty("user.dir") + "/data/map_saves/" + filename), "utf-8"))) {
+      writer.write(Integer.toString(xmax) + " - " + Integer.toString(ymax) + "\n");
+      writer.write(tileForms.toString() + "\n");
+      for (int i = 0 ; i < xmax ; ++i){
+        for (int j = 0 ; j < ymax ; ++j){
+          writer.write(theMap[i][j].saveString() + "\n");    
+        }
+      }
+    }
+    catch(Exception e){
+      e.printStackTrace();
+    }
+  }
+  
+  public void loadMap(String filename){
+    
+    try {
+      FileReader fileReader = new FileReader(System.getProperty("user.dir") + "/data/map_saves/" + filename);
+      BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+      String line = null;
+      line = bufferedReader.readLine();
+      if(line != null){
+        this.xmax = Integer.parseInt(line.split(" - ")[0]);
+        this.ymax = Integer.parseInt(line.split(" - ")[1]);
+      }
+      else{
+        throw new WCException("Error while loading a map: first line missing.");
+      }
+      line = bufferedReader.readLine();
+      if(line != null){
+        this.tileForms = geometricForm.valueOf(line);
+      }
+      else{
+        throw new WCException("Error while loading a map: second line missing.");
+      }
+      this.theMap = new Tile[xmax][ymax];
+      int nbairport = 0, nbharbour = 0, nbcity = 0, nbmilitarycamp = 0, nboasis = 0, nboil = 0;
+      for(int i = 0 ; i < xmax ; ++i){
+        for(int j = 0 ; j < ymax ; ++j){
+          line = bufferedReader.readLine();
+          if(line != null){
+            if(line.contains("-")){
+              switch(line.split(" - ")[0]){
+                case "Desert":   theMap[i][j] = new Desert();   break;
+                case "Hill":     theMap[i][j] = new Hill();     break;
+                case "Mountain": theMap[i][j] = new Mountain(); break;
+                case "Plain":    theMap[i][j] = new Plain();    break;
+                case "Sea":      theMap[i][j] = new Sea();      break;
+                default: throw new WCException("Error on loading a land type.");
+              }//switch
+              switch(line.split(" - ")[1].split(" ")[0]){
+                case "Airport":       theMap[i][j].addSpecialPlace(new Airport(nbairport));           nbairport++;      break;
+                case "City":          theMap[i][j].addSpecialPlace(new City(nbcity));                 nbcity++;         break;
+                case "Military":      theMap[i][j].addSpecialPlace(new MilitaryCamp(nbmilitarycamp)); nbmilitarycamp++; break;
+                case "Oasis":         theMap[i][j].addSpecialPlace(new Oasis(nboasis));               nboasis++;        break;
+                case "Oil":           theMap[i][j].addSpecialPlace(new OilDerrick(nboil));            nboil++;          break;
+                case "Harbour":       theMap[i][j].addSpecialPlace(new Harbour(nbharbour));           nbharbour++;      break;
+                default:throw new WCException("Error on loading a special place.");
+              }//switch line.split()
+            }
+            else{
+              switch(line){
+                case "Desert":   theMap[i][j] = new Desert();   break;
+                case "Hill":     theMap[i][j] = new Hill();     break;
+                case "Mountain": theMap[i][j] = new Mountain(); break;
+                case "Plain":    theMap[i][j] = new Plain();    break;
+                case "Sea":      theMap[i][j] = new Sea();      break;
+                default: throw new WCException("Error on loading a land type.");
+              }//switch
+            }
+          }
+          else{
+            // TODO: error!!
+          }
+        }
+      }
+      
+      bufferedReader.close();         
+    }
+    catch(Exception ex) {
+      ex.printStackTrace();
+    }
+    
+    
   }
   
   @Override

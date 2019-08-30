@@ -241,7 +241,6 @@ public abstract class Unit implements UnitInterface {
   }
   
   protected HashMap<String,ArrayList<Coordinates>> checkSurroundings(int range){
-    
     return myMap.lookInRange(range,coordinates.X,coordinates.Y);
   }
   

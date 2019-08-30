@@ -185,6 +185,13 @@ public class Infantry extends GroundUnit{
     System.out.println("I see " + seen.get("locations").size() + " special place and "
                       + seen.get("enemies").size() + " enemies and " 
                       + seen.get("allies").size() + " allies.");
+    
+    // How to make decision?
+    // count?
+    // random?
+    // change strategy according to exp, health, enemy?!
+    // and what if there is no enemy in sight?
+    
     return action(objective);
   }
   

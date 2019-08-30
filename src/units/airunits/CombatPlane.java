@@ -181,8 +181,7 @@ public class CombatPlane extends AirUnit{
   
   
   /**
-   * 
-   * // decide what to do according to the surroundings
+    // decide what to do according to the surroundings
     // mix surroundings with self state
     // decide a couse of action according to these factors + will of things to do
     
@@ -205,6 +204,17 @@ public class CombatPlane extends AirUnit{
                       + seen.get("enemies").size() + " enemies and " 
                       + seen.get("allies").size() + " allies.");
     
+    // check enemies 
+    // if less than allies
+    //    attack one of most wounded
+    // else
+    //    if enemies = allies
+    //      defend
+    //    else
+    //      retreat
+    
+    // take into account the land type and eventual special places
+    
     // sort enemies by distance and allies around and my abilities
     // sort allies by distance and enemies around and my abilitie
     // sort locations by interest and distance and my abilities
@@ -215,6 +225,9 @@ public class CombatPlane extends AirUnit{
     //  - compute attack score according to enemy and ally number
     //  - location score according to distance and enemy presence
     //  - combine... and decide !
+    
+    // how to take into account coordination between unit?
+    //   attacking the most wounded is passive coordination
     
     return action(objective);
   }

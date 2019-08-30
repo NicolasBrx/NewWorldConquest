@@ -2,7 +2,6 @@ package player;
 
 import java.util.ArrayList;
 import tools.Coordinates;
-import units.ModernUnit;
 import units.Unit;
 
 /**
@@ -34,6 +33,20 @@ public class Player {
     unitList = new ArrayList<>();
     locationList = new ArrayList<>();
     this.isAI = false;
+  }
+  
+  /**
+   * Save and load the player into and from the file given in parameter
+   * the player : team, name and civil state, list of units (type + location) 
+   *              and list of special places owned (location)
+   * beware for artificial intelligence, might have some other things to store...
+   */
+  public void savePlayer(String filename){
+    
+  }
+  
+  public void loadPlayer(String filename){
+    
   }
   
   public void addUnit(Unit unit){

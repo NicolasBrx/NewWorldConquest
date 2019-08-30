@@ -97,5 +97,9 @@ public abstract class Tile implements TileInterface {
     this.observed = observed;
   }
   
+  public String saveString(){
+    return getLandType() 
+                + (isSpecialPlace() ? " - " +getSpecialPlace().getName() : "");
+  }
   
 }

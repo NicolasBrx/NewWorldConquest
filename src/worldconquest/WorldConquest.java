@@ -57,6 +57,14 @@ public class WorldConquest {
   }
   
   // toReturn.stream().allMatch(c -> (Math.abs(c.X - nx) > (tx / 2) && Math.abs(c.Y - nY) > (ty / 2)))
+  /**
+   * 
+   * @param x
+   * @param y
+   * @param check
+   * @param size
+   * @return 
+   */
   private static boolean checkDistance(int x, int y, ArrayList<Coordinates> check, int size){
     boolean toReturn = true;
     if(!check.isEmpty()){
@@ -69,6 +77,12 @@ public class WorldConquest {
     return toReturn;
   }
   
+  /**
+   * This could (should?) all be managed by the class Game... It is also this class that will
+   * handle the save and load of a game... try to move it?
+   * Game  is a game, not its initialisation ? ==> yes
+   * ==> just give the ability to decide between full auto for test and player intervention
+   */
   public static void test(){
     
     try{
@@ -77,6 +91,12 @@ public class WorldConquest {
       int tailleX = nbPlayers * 10;
       int tailleY = nbPlayers * 10;
       createMap("test_world",tailleX, tailleY);
+      
+      //gameMap.saveMap("toto.map");
+      //gameMap = new Map();
+      //gameMap.loadMap("toto.map");
+      
+      
       ArrayList<Coordinates> startingPoints = decideStartingLocation();
       for(int i = 0 ; i < startingPoints.size() ; ++i){
         players.get(i).addUnit(new Infantry(players.get(i).getPlayerTeam(),1,
@@ -86,7 +106,6 @@ public class WorldConquest {
         if(players.get(i).isIsAI())
           players.get(i).getUnits().get(0).activateAI(true);
       }
-      
       
       for(Player player : players){
         player.getUnits().get(0).playAI();
